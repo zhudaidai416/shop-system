@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   <link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.min.css">
+   <script src="../lib/bootstrap/js/jquery-1.11.3.js"></script>
+   <script src="../lib/bootstrap/js/bootstrap.min.js"></script>
+    <!-- <script src="../lib/bootstrap/css/bootstrap-datetimepicker.min.css"></script> -->
+    <style>
+       .clear::after{
+        content: "";
+        display: block;
+        clear: both;
+       }
+        /* html,body{
+            height: 100%;
+        } */
+        .host,.myTop,.myFirst,.mySecound{
+            width: 100%;
+            height: 100%;
+            /* border: 1px solid red; */
+            padding: 0;
+            margin: 0;
+        }
+        .mySecound>:first-child{
+            padding: 20px 0 0 20px;
+        }
+        .mySecound>:nth-child(2){
+            padding: 20px 0 0 20px;
+        }
+        .mySecound>:first-child{
+            width: 100%;
+            height:8%;
+            color: rgb(187, 190, 194);
+            
+        }
+        .mySecound>:nth-child(2){
+            font-size: 25px;
+        }
+    
+        .myThird{
+            width: 95%;
+            height: 100%;
+            background-color: rgba(145, 163, 182, 0.3);
+            overflow: hidden;
+        }
+        .myFour{
+            width: 96%;
+            /* height: 70%; */
+            background-color: white;
+            /* border: 1px solid green; */
+            padding-top: 10px;
+           margin: 20px 0 0 20px;
+        }
+    
+        .myFour>div,p,table{
+            padding:0 20px 0 20px    
+        }
+        .myFour>:first-child{
+            font-weight: bolder;
+            font-size: 17px;
+            /* margin: 20px 0 0 20px; */
+            /* border-bottom: 1px solid  gray; */
+        }
+       .myFourA>p{
+        display: inline-block;
+        width: 30%;
+        height: 20px;
+        margin-bottom: 20px;
+       }
+       .myFourB,.myFourC{
+        margin-bottom: 20px;
+       }
+       .myFourB>:last-child{
+        padding: 5px;
+       }
+       .myFourB>:first-child,.myFourC>:first-child{
+        padding-right: 10px;
+       }
+       .myFourD{
+        font-weight: bolder;
+        font-size: 17px;
+       }
+       .myFoureE{
+        padding: 20px;
+       }
+       .myFoureE th{
+        width:20%
+       }
+       .myFive{
+        width: 96%;
+            height: 280px;
+            background-color: white;
+            /* border: 1px solid rgb(11, 37, 234); */
+            padding-top: 10px;
+           margin: 20px 0 0 20px;
+       }
+       .myFive>p{
+        font-weight: bolder;
+            font-size: 17px;
+       }
+       .myFiveA{
+        width: 53%;
+        height: 40px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-bottom: 10px;
+       }
+       .myFiveA select{
+        width: 80%;
+       }
+       .myFiveB{
+        width:  80%;;
+        height: 40px;
+        border: 1px dashed gainsboro;
+        text-align: center;
+        line-height: 40px;
+        border-radius: 5px;
+        margin-top:20px ;
+       }
+       .mySix{
+        width: 100%;
+        height: 40px;
+        margin: 20px 20px 100px;
+       }
+       .mySix>:first-child{
+        width: 160px;
+        height: 40px;
+        background-color: rgb(85, 191, 243);
+       }
+       .mySix>:last-child{
+        width: 160px;
+        height: 40px;
+        margin:20px;
+        /* background-color: rgb(85, 191, 243); */
+       }
+    </style>
+</head>
+<body>
+    <section class="container-fluid host">
+        <div class="row myTop">
+            <div class="col-lg-12 myFirst">
+                <div class="mySecound">
+                    <p>
+                        <span>订单列表</span>
+                        <span>/</span>
+                        <span>订单详情</span>
+                        <span>/</span>
+                        <span>订单出库</span>
+                    </p>
+                    <p>订单出库</p>
+                    <div class="myThird clear">
+                        <div class="myFour ">
+                                <p>确认订单信息</p>
+                                <hr/>
+                            <div class="myFourA">
+                                <p>订单号:<span id="order-num"></span> 
+                                <p>下单时间：<span id="order-time"></span></p>
+                                <p>订单金额：<span id="price_sum"></span></p>
+                            </div>
+                            <div class="myFourB">
+                                <span >收货地址：</span>
+                                <span id="goods_address"></span>
+                                <span class="glyphicon glyphicon-paste"></span>
+                            </div>
+                            <div class="myFourC">
+                                <span>买家留言：</span>
+                                <span id="leave_message"></span>
+                            </div>
+                            <p class="myFourD">订单商品</p>
+                            <div class=" myFoureE">
+                                <table class="table">
+                                <thead >
+                                    <tr>
+                                        <th>商品编号</th>
+                                        <th>商品名称</th>
+                                        <th>单价</th>
+                                        <th>数量（件）</th>
+                                        <th>金额</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="my_tbody">
+                                    
+                                </tbody>
+                                <tfoot id="my_tfoot">
+                                    
+                                </tfoot>
+                            </table>
+                        </div>
+                            
+                        </div>
+                        <div class="myFive">
+                            <p>配置物流服务</p>
+                            <hr/>
+                            <div class="myFiveA">
+                                <span>物流公司：</span>
+                                <select id="" class="form-control">
+                                    <option>请选择</option>
+                                    <option value="0">京东快递</option>
+                                    <option value="1">韵达快递</option>
+                                    <option value="2">极兔快递</option>
+                                    <option value="3">顺丰快递</option>
+                                    <option value="4">圆通快递</option>
+                                </select>
+                            </div>
+                            <div class="myFiveA">
+                                <span>运单号：</span>
+                                <select id="" class="form-control">
+                                    <option value="2">请选择</option>
+                                    <option value="0">9090950</option>
+                                    <option value="1">5201314</option>
+                                    <option value="2">740740</option>
+                                </select>
+                                
+                            </div>
+                            <div  class="myFiveA">
+                                <p class="myFiveB">+添加物流公司</p>
+                            </div>
+                        </div>
+                        <div class="mySix">
+                             <button class="btn btn-default" id="out_storage">出库</button>
+                             <button class="btn btn-default" id="back_order_details">返回</button>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 测试数据 -->
+    <!-- <script src="../commonData.js"></script>> -->
+
+    <script>
+        /* 订单详情里面传递过来的ID */
+        let Id = JSON.parse(localStorage.getItem('dckId'))
+        // Id = 2
+        /* 定义一个装商品对象的数组 */
+        let commodity = []
+        let order_num
+        let order_time
+        let order_money
+        let order_ID
+        let goods_address
+        let goods_Name
+        let goods_phone
+        let leave_message
+        let price_sum = 0
+        let order_all_num = 0
+        //查询浏览器里面的订单数据
+        let order = JSON.parse(sessionStorage.getItem('order'))
+        let ware = JSON.parse(sessionStorage.getItem('ware'))
+        let user = JSON.parse(sessionStorage.getItem('user'))
+        let customer = JSON.parse(sessionStorage.getItem('customer'))
+
+        order.forEach((value,index) => {
+            if (Id == order[index].id) {
+                //只有id相同的订单才能进去
+                //修改该商品出库状态
+                order[index].check = 2
+                order_num = order[index].wareNum 
+                ware.forEach((value1,index1) => {
+                    if (order[index].wid == ware[index1].id) {
+                        //将拿到的符合条件的商品装进去
+                        //当前商品的库存-order_num
+                        ware[index1].caseNum -= order_num
+                        let a = {ware:ware[index1],
+                                wareNum:order_num
+                            }
+                        commodity.push(a) 
+                    }
+                });
+                //拿到当前订单的下单时间
+                order_time = order[index].placeTime
+                /* 下单用户id */
+                order_ID = order[index].kid
+                /* 留言 */
+                leave_message = order[index].leave_message
+            }  
+        });
+
+        /* 遍历customer所有用户数组 找到当前order_ID下面的用户的地址 */
+        customer.forEach((value,index) => {
+            console.log(customer[index].id);
+            if (order_ID == customer[index].id) {
+                goods_address = customer[index].goods_address
+                goods_Name = customer[index].name
+                goods_phone = customer[index].phone
+            }
+        });
+
+        /* 页面加载 立即执行函数 */
+        $(function(){
+            //渲染订单号
+            $('#order-num').text(Id)
+            $('#order-time').text(order_time)
+            $('#goods_address').text(`${goods_Name}, ${goods_phone}, ${goods_address}`)
+            $('#leave_message').text(leave_message)
+            /* 将商品渲染到表格里面去 */
+            for (let i = 0; i < commodity.length; i++) {
+                $('#my_tbody').append(`<tr>
+                                        <td>${commodity[i].ware.id}</td>
+                                        <td>${commodity[i].ware.name}</td>
+                                        <td>${commodity[i].ware.price}</td>
+                                        <td>${commodity[i].wareNum}</td>
+                                        <td>${commodity[i].wareNum*commodity[i].ware.price}</td>
+                                    </tr>`)
+                                    order_all_num += parseInt(commodity[i].wareNum)
+                                    price_sum += commodity[i].wareNum*commodity[i].ware.price
+            }
+            $('#my_tfoot').append(`<tr>
+                                        <td>总计</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>${order_all_num}</td>
+                                        <td>${price_sum}</td>
+                                    </tr>`)
+            $('#price_sum').text(`￥${price_sum}`)
+        })
+
+        /* 出库按钮函数 */
+        $('#out_storage').on('click',function(){
+            //将改好的数据写进浏览器里面去
+            sessionStorage.getItem('order',JSON.stringify(order))
+            sessionStorage.getItem('ware',JSON.stringify(ware))
+            sessionStorage.getItem('user',JSON.stringify(user))
+        })
+       
+        /* 返回按钮函数 */
+        $('#back_order_details').on('click',function(){
+            $('#content').load('./订单详情.html')
+        })
+    </script>
+ </body>
+</html>    

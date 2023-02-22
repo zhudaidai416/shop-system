@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.min.css" />
+    <script src="../lib/bootstrap/js/jquery-1.11.3.js"></script>
+    <script src="../lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../main.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        width: 100%;
+        height: 100%;
+      }
+      body {
+        width: 100%;
+        height: 100%;
+      }
+      .yemian {
+        width: 100%;
+        height: 100%;
+        background-color: #f0f2f5;
+        display: flex;
+        justify-content: center;
+      }
+      .juzhong {
+        width: 95%;
+        height: auto;
+        background-color: #ffffff;
+        border-radius: 5px;
+        margin-top: 40px;
+      }
+      .hangbuju {
+        margin-top: 30px;
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: space-between;
+        /* line-height: auto; */
+        align-items: center;
+      }
+      .anniubuju {
+        margin: 0px 30px;
+        display: flex;
+        align-items: center;
+      }
+      .anniubuju > button {
+        margin: 0px 10px;
+      }
+      .fenye {
+        display: flex;
+        cursor: pointer;
+      }
+      .fenye > div {
+        margin: 0px 10px;
+      }
+      .xiala select {
+        width: 88px;
+        height: 34px;
+        border: 1px solid #d9d9d9;
+        border-radius: 5px;
+      }
+      .waitab .table {
+        width: 96%;
+        margin: 20px 40px;
+      }
+      .waitab .table > thead {
+        border: 1px solid #e8e8e8;
+        background-color: #fafafa;
+      }
+      .waitab .table td {
+        height: 50px;
+        line-height: 50px !important;
+      }
+      .yemian a{
+        cursor: pointer;
+      }
+      .motaiyemian {
+        width: 864px;
+        height: 550px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .motaijuzhong {
+        width: 90%;
+        height: 95%;
+        display: flex;
+      }
+      .zuotable{
+        width: 50%;
+        height: 100%;
+      }
+      .youtable {
+        width: 35%;
+        height: 100%;
+      }
+      .topdisp {
+        width: 100%;
+        height: auto;
+        border: 1px solid #d9d9d9;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        display: flex;
+        justify-content: space-between;
+      }
+      .topdisp > div {
+        margin: 10px;
+      }
+      .neirongdisp {
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+      }
+      .neirongsousuo {
+        width: 85%;
+        height: 25px;
+        margin: 10px;
+        position: relative;
+      }
+      .neirongsousuotubiao  {
+        width: 20px;
+        height: 20px;
+        background-image: url(./u548.png);
+        background-size: 20px 20px;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: 3px;
+        left: 300px;
+        cursor: pointer;
+      }
+      .juzhonganniu {
+        width: 15%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .juzhonganniu > div{
+        width: 90%;
+        height: 200px;
+        margin-top: -300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .juzhonganniu button {
+        margin: 5px;
+      }
+      #daoru .tabcss {
+        width: 100%;
+        height: 470px;
+        overflow: scroll;
+      }
+      .fanyecss {
+        display: flex;
+        justify-content: flex-end;
+        margin: 10px;
+      }
+      #daoru .table td { 
+        height: 50px;
+        line-height: 50px !important;
+      }
+      #daoru .table img{
+        width: 50px;
+      }
+      #daoru thead {
+        background-color: #d9d9d9;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 页面框 -->
+    <div class="yemian">
+      <div class="juzhong">
+        <!-- 第一行 -->
+        <div class="hangbuju">
+          <!-- 左边按钮 -->
+          <div class="anniubuju">
+            <button class="btn btn-info">新增分类</button>
+            <button class="btn btn-default">编辑分类顺序</button>
+          </div>
+          <!-- 左边按钮 -->
+          <!-- 右边按钮 -->
+          <div class="anniubuju">
+            <div
+              style="
+                width: auto;
+                height: 34px;
+                line-height: 34px;
+                display: flex;
+                margin: 0px 10px;
+                font-size: 16px;
+              "
+            >
+              <div>共</div>
+              <div></div>
+              <div>个项目</div>
+            </div>
+            <div class="fenye">
+              <div class="btn btn-default">&lt;</div>
+              <div></div>
+              <div class="btn btn-default">&gt;</div>
+            </div>
+            <div class="xiala">
+              <select name="" id="">
+                <option value="">5条/页</option>
+                <option value="">10条/页</option>
+              </select>
+            </div>
+          </div>
+          <!-- 右边按钮 -->
+        </div>
+        <!-- 第一行 -->
+        <!-- 第二行 -->
+        <div class="waitab">
+          <table class="table">
+            <thead>
+                <tr>
+                    <td>分类名称</td>
+                    <td>分类简介</td>
+                    <td>商品数量(件)</td>
+                    <td>状态</td>
+                    <td>操作</td>
+                </tr>
+            </thead>
+            <tbody id="my_tbody">
+                
+            </tbody>
+          </table>
+        </div>
+        <!-- 第二行 -->
+        <!-- 第三行 -->
+        <div class="hangbuju">
+            <!-- 左边按钮 -->
+            <div class="anniubuju">
+              <button class="btn btn-info" data-toggle="modal" data-target="#add_sort">新增分类</button>
+              <button class="btn btn-default">编辑分类顺序</button>
+            </div>
+            <!-- 左边按钮 -->
+            <!-- 右边按钮 -->
+            <div class="anniubuju">
+              <div
+                style="
+                  width: auto;
+                  height: 34px;
+                  line-height: 34px;
+                  display: flex;
+                  margin: 0px 10px;
+                  font-size: 16px;
+                "
+              >
+                <div>共</div>
+                <div></div>
+                <div>个项目</div>
+              </div>
+              <div class="fenye">
+                <!-- <div class="btn btn-default">&lt;</div> -->
+                <!-- 显示页码区域 -->
+                <div>
+                  <nav aria-label="Page navigation">
+                    <ul class="pagination" id="my_page">
+                      
+                    </ul>
+                  </nav>
+                </div>
+                <!-- <div class="btn btn-default">&gt;</div> -->
+              </div>
+              <div class="xiala">
+                <select name="" id="select_page">
+                  <option value="1">1条/页</option>
+                  <option value="2">2条/页</option>
+                  <option value="3">3条/页</option>
+                  <option value="4">4条/页</option>
+                  <option value="5">5条/页</option>
+                </select>
+              </div>
+            </div>
+            <!-- 右边按钮 -->
+          </div>
+        <!-- 第三行 -->
+      </div>
+    </div>
+    <!-- 页面框 -->
+
+    <!-- 添加模态框 -->
+    <div class="modal fade" id="add_sort" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="exampleModalLabel">新增分类</h4>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="sort" class="control-label">分类名称:</label>
+                <input type="text" class="form-control" id="sort">
+              </div>
+              <div class="form-group">
+                <label for="introduce" class="control-label">商品介绍:</label>
+                <textarea class="form-control" id="introduce"></textarea>
+              </div>
+              <div class="form-horizontal "id='show_hide' >
+                <label class="control-label">分类状态:</label>
+                <label>
+                  <input type="radio" name="show_hide" id="show" value="1">显示 
+                </label>
+                <label>
+                  <input type="radio" name="show_hide" id="hide" value="-1">隐藏
+                </label>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-primary" id="make_sure">确定</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 编辑模态框 -->
+    <div class="modal fade" id="bianjimotai" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="exampleModalLabel">编辑分类</h4>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="sort" class="control-label">分类名称:</label>
+                <input type="text" class="form-control" id="sort1">
+              </div>
+              <div class="form-group">
+                <label for="introduce" class="control-label">商品介绍:</label>
+                <textarea class="form-control" id="introduce1"></textarea>
+              </div>
+              <div class="form-horizontal "id='show_hide' >
+                <label class="control-label">分类状态:</label>
+                <label>
+                  <input type="radio" name="show_hide" id="show1" value="1">显示 
+                </label>
+                <label>
+                  <input type="radio" name="show_hide" id="hide1" value="-1">隐藏
+                </label>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-primary" id="bianjiok">确定</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 删除模态框 -->
+    <div class="modal fade" id="del_sort" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">删除分类</h4>
+          </div>
+          <div class="modal-body">
+            <h4 class="text-danger">你确定要删除此分类吗？</h4>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-primary" id="sure_del">确定</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+    <!-- 导入商品模态框 -->
+    <div class="modal fade" id="daoru" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">导入商品</h4>
+          </div>
+          <div class="modal-body">
+              <!-- 页面框 -->
+              <div class="motaiyemian">
+                <!-- 居中框 -->
+                <div class="motaijuzhong">
+                  <!-- 左边表 -->
+                  <div class="zuotable">
+                    <!-- 表头标题 -->
+                    <div class="topdisp">
+                      <!-- 表头左 -->
+                      <div style="display: flex;">
+                        <!-- 左边动态多少项 -->
+                        <div id='xiangmu1'>
+                          x
+                        </div>
+                        <!-- 左边动态多少项 -->
+                        <!-- 左边字体 -->
+                        <div>
+                          项
+                        </div>
+                        <!-- 左边字体 -->
+                      </div>
+                      <!-- 表头左 -->
+                      <!-- 表头右 -->
+                      <div>
+                        <strong>在售商品</strong>
+                      </div>
+                      <!-- 表头右 -->
+                    </div>
+                    <!-- 表头标题 -->
+                    <!-- 表格内容外框 -->
+                    <div style="border: 1px solid #d9d9d9;">
+                    <!-- 表格渲染 -->
+                    <div class="tabcss">
+                      <table class="table">
+                        <thead>
+                          <tr class="tr-left">
+                            <td><input type="checkbox"></td>
+                            <td>商品编号</td>
+                            <td>商品名称</td>
+                            <td>售价(元)</td>
+                            <td>库存</td>
+                        </tr>
+                        </thead>
+                        <tbody id="zaishou-tbody">
+                          
+
+                        </tbody>
+                      </table>
+                    </div>
+                    <!-- 表格渲染 -->
+                    <!-- 翻页 -->
+                    <!-- <div class="fanyecss">
+                      <button>&lt;</button>
+                      <button>&gt;</button>
+                    </div> -->
+                    <!-- 翻页 -->
+                    </div>
+                    <!-- 表格内容外框 -->
+                  </div>
+                  <!-- 左边表 -->
+                  <!-- 中间按钮 -->
+                  <div class="juzhonganniu" >
+                    <div>
+                      <button class="btn btn-default" onclick="jiarufenlei()">&lt;&lt;加入左侧</button>
+                      <button class="btn btn-default" onclick="quchufenlei()">加入右侧&gt;&gt;</button>
+                    </div>
+                  </div>
+                  <!-- 中间按钮 -->
+                  <!-- 右边表 -->
+                  <div class="youtable">
+                    <!-- 表头标题 -->
+                    <div class="topdisp">
+                      <!-- 表头左 -->
+                      <div style="display: flex;">
+                        <!-- 左边动态多少项 -->
+                        <div id='xiangmu2'>
+                          x
+                        </div>
+                        <!-- 左边动态多少项 -->
+                        <!-- 左边字体 -->
+                        <div>
+                          项
+                        </div>
+                        <!-- 左边字体 -->
+                      </div>
+                      <!-- 表头左 -->
+                      <!-- 表头右 -->
+                      <div>
+                        <strong>导入商品</strong>
+                      </div>
+                      <!-- 表头右 -->
+                    </div>
+                    <!-- 表头标题 -->
+                    <div style="border: 1px solid #d9d9d9;">
+                    <!-- 表格渲染 -->
+                    <div class="tabcss">
+                      <table class="table">
+                        <thead>
+                          <tr class="tr-right">
+                            <td><input type="checkbox"></td>
+                            <td>商品编号</td>
+                            <td>商品名称</td>
+                        </tr>
+                        </thead>
+                        <tbody id ='daoru-tbody'>
+                          
+                          <tr>
+                            <td><input type="checkbox"></td>
+                            <td><img src="" alt="">阿哲1231512151241</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <!-- 表格渲染 -->
+                    <!-- 翻页 -->
+                    <!-- <div class="fanyecss">
+                      <button>&lt;</button>
+                      <button>&gt;</button>
+                    </div> -->
+                    <!-- 翻页 -->
+                    </div>
+                  </div>
+                  <!-- 右边表 -->
+                </div>
+                <!-- 居中框 -->
+              </div>
+              <!-- 页面框 -->
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-primary" onclick="ok()">确定</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+    <!-- <script src="../commonData.js"></script> -->
+    <script>
+
+      // 获取商品分类表的数组
+      let sort = JSON.parse(sessionStorage.getItem('sort'))
+      // 获取当前登录的user
+      let user = JSON.parse(sessionStorage.getItem('user'))
+      // 获取所有的商品
+      let ware1 = JSON.parse(sessionStorage.getItem('ware'))
+      let ware = [...ware1]
+      let all_page
+      let now_page = 1
+      let select_page = 1
+      let taht
+      let bianjithis
+      let  ID
+
+      
+      /* 编辑顺序  数据筛选 按照分类名称和商品数量分类  */
+      function search(){
+
+      }
+      //数据拿到后将user改成customer
+
+      //数组去重 indexOf总是返回第一个元素的位置，后续的重复元素位置与indexOf返回的位置不相等，因此被filter滤掉了。
+      // var newSore = [...new Set(sore)];  // 对原始数组去重
+      /* 建立一个new_ware对象数组 用来计数 */
+      let new_ware = []
+      for (let i = 0; i < ware.length; i++) {
+        let num = 1
+        for (let j = i+1; j < ware.length; j++) {
+            if (ware[i].sid == ware[j].sid) {
+              num++
+              ware.splice(j,1)
+              j--
+            }
+        }
+        let aaa = {sid:ware[i].sid,num:num}
+        new_ware.push(aaa)
+      }
+      console.log(new_ware);//对象数组里面有分类id和数量num
+
+      /* 根据数据渲染页码按钮 */
+      function show_page(arr,select_page){
+        //计算总页码
+        all_page = Math.ceil(arr.length/select_page)
+        $('#my_page').html('')
+        $('#my_page').append(`<li id='pre_page'><a aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>`)
+        for (let i = 1; i <= all_page; i++) {
+          $('#my_page').append(`<li class="item"><a>${i}</a></li>`)
+        }
+        $('#my_page').append(`<li id='next_page'><a aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>`)
+      }
+
+      /* 点击当前按钮显示对应页的数据 */
+      $('#my_page').on('click','.item',function(){
+        //获取当前页面
+        let page = parseInt($(this).text())
+        //调用数据截取函数
+        show_cat(page,select_page)
+      })
+
+      /* 截取对应页码的数据 */
+      function show_cat(num,select_page){
+        //截取对应数组起始页
+        let start_page = (num-1)*select_page
+        let arr = []
+        arr = sort.slice(start_page,start_page+select_page)
+        /* 排他思想 让自己加上active类 */
+        $('#my_page .item').eq(num-1).addClass('active').siblings().removeClass('active')
+        show_table(arr)
+        now_page = num
+      }
+
+      /* 数据渲染函数 */
+      function show_table(arr_data) {
+        $('#my_tbody').html('')
+        /* 通过比对分类id去拿数量num */
+        for (let i = 0; i < arr_data.length; i++) {
+          let sore_num = 0
+          for (let j = 0; j < new_ware.length; j++) {
+            if (arr_data[i].id == new_ware[j].sid) {
+              sore_num = new_ware[j].num
+            }  
+          }
+          //获取check的状态值
+          let check = arr_data[i].check == -1?'隐藏':'显示'
+          $('#my_tbody').append(`<tr>
+                                    <td>${arr_data[i].name}</td>
+                                    <td>${arr_data[i].intro}</td>
+                                    <td>${sore_num}</td>
+                                    <td>${check}</td>
+                                    <td sortData='${JSON.stringify(arr_data[i])}'>
+                                      <a class='daoru'>导入商品</a>
+                                      <a class='bianji'>编辑</a> 
+                                      <a class='del'>删除</a>
+                                    </td>
+                                </tr>`)
+        }
+      }
+
+      /* 上一页函数 */
+      $('#my_page').on('click','#pre_page',function(){
+        if (now_page>1) {
+          let page = now_page -1
+          show_cat(page,select_page)
+        }
+      })
+
+      /* 下一页函数 */
+      $('#my_page').on('click','#next_page',function(){
+        if (now_page<all_page) {
+          let page = now_page + 1
+          show_cat(page,select_page)
+        }
+      })
+
+      /* 新增分类 函数 */
+      $('#make_sure').on('click',function(){
+        //打开模态框
+        //获取模态框里面的值
+        let sort_name = $('#sort').val()
+        let introduce_intro = $('#introduce').val()
+        let check = $('#show_hide :radio:checked').val()
+        //将数据用一个对象存储
+        let sort_user = {
+          id:sort[length-1].id+1,
+          uid:user.id,
+          name:sort_name,
+          intro:introduce_intro,
+          check:check,
+        }
+        //将对象push到sort数组里面
+        sort.push(sort_user)
+        //写到浏览器里面
+        sessionStorage.setItem('sort',sort)
+        //清空模态框数据
+        $('#add_sort').find('form').trigger('reset')
+        //隐藏模态框
+        $('#add_sort').modal('hide')
+        show_page(sort,select_page)
+        show_cat(now_page,select_page)
+      })
+
+      /* 删除分类 函数 */
+      $('#my_tbody').on('click','.del',function(){
+        $('#del_sort').modal('show')
+        let that = this
+
+        $('#sure_del').on('click',function(){
+          /* 拿取当前点击的sore数据 */
+          let this_sort = JSON.parse($(that).parent().attr('sortData'))
+          //隐藏模态框
+          $('#del_sort').modal('hide')
+          //删除sore数组里面的对应数据
+          sort.forEach((item,index) => {
+            if (item.id ==this_sort.id ) {
+              sort.splice(index,1)
+            }
+          });
+          show_page(sort,select_page)
+          show_cat(1,select_page)
+        })
+      })
+      
+
+      /* 导入商品 函数 */
+      $('#my_tbody').on('click','.daoru',function(){
+        motaishow(this)
+      })
+
+      // 渲染模态框表格
+      function motaishow(e){
+        taht = e
+        $('#daoru').modal('show')
+        console.log(ware1);
+        $('#daoru-tbody').html("")
+        $('#zaishou-tbody').html("")
+        ID= JSON.parse( $(e).parent().attr('sortData')).id
+        for(let i = 0;i<ware1.length;i++){
+          if(ware1[i].sid == -1){
+            console.log(123)
+            $('#daoru-tbody').append(`
+                          <tr class = 'daorushangpingtr1'>
+                            <td><input type="checkbox"></td>
+                            <td>${ware1[i].id}</td>
+                            <td><img src="" alt="">${ware1[i].name}</td>
+                          </tr>           
+            `)
+          }else if (ware1[i].sid == ID){
+             
+              $('#zaishou-tbody').append(`
+                          <tr data-Sort='${JSON.stringify(ware1[i])}' class = 'daorushangpingtr'>
+                            <td><input type="checkbox"></td>
+                            <td>${ware1[i].id}</td>
+                            <td><img src="" alt="">${ware1[i].name}</td>
+                            <td>${ware1[i].price}</td>
+                            <td>${ware1[i].sellNum}</td>
+                          </tr>
+            `)
+          }
+        }
+        $('#xiangmu1').html($('.daorushangpingtr').length)
+        $('#xiangmu2').html($('.daorushangpingtr1').length)
+      }
+
+      // 去除分类
+      function quchufenlei(){
+        let xuanzexiang = []
+        for(let i = 0;i<$('.daorushangpingtr').length;i++){
+          if($('.daorushangpingtr').eq(i).find('input').prop('checked')){
+           xuanzexiang.push($('.daorushangpingtr').eq(i).find('input').parent().next().html())
+          }
+        }
+        for(let i = 0 ;i<xuanzexiang.length;i++){
+          for(let e = 0;e<ware1.length;e++){
+            if(ware1[e].id == xuanzexiang[i]){
+            ware1[e].sid = -1
+          }
+          }
+        }
+        motaishow(taht)
+        show_page(sort,select_page)
+        show_cat(1,select_page)
+      }
+
+      // 加入分类
+      function jiarufenlei(){
+        let xuanzexiang = []
+        for(let i = 0;i<$('.daorushangpingtr1').length;i++){
+          if($('.daorushangpingtr1').eq(i).find('input').prop('checked')){
+           xuanzexiang.push($('.daorushangpingtr1').eq(i).find('input').parent().next().html())
+          }
+        }
+        for(let i = 0 ;i<xuanzexiang.length;i++){
+          for(let e = 0;e<ware1.length;e++){
+            if(ware1[e].id == xuanzexiang[i]){
+            ware1[e].sid = JSON.parse( $(taht).parent().attr('sortData')).id
+          }
+          }
+        }
+        motaishow(taht)
+        show_page(sort,select_page)
+        show_cat(1,select_page)
+      }
+
+      function ok(){
+        $('#daoru').modal('hide')
+        for(let i=0;i<new_ware.length;i++){
+          if(new_ware[i].sid == ID){
+          new_ware[i].num = $('.daorushangpingtr').length
+        }
+        }
+        show_page(sort,select_page)
+        show_cat(1,select_page)
+      }
+
+      // 编辑分类按钮
+      $('#my_tbody').on('click','.bianji',function(){
+        bianjithis =this
+        $('#bianjimotai').modal('show')
+        let name = $(this).parent().parent().children().eq(0).html()
+        let jianjie = $(this).parent().parent().children().eq(1).html()
+        let zhuangtai = $(this).parent().parent().children().eq(3).html()
+        $('#sort1').val(`${name}`)
+        $('#introduce1').val(`${jianjie}`)
+        if(zhuangtai == '显示'){
+          $('#show1').attr('checked','')
+        }
+        if(zhuangtai == '隐藏'){
+          $('#hide1').attr('checked','')
+        }
+      })
+
+      //编辑确认按钮
+      $('#bianjimotai').on('click','#bianjiok',function(){
+        $('#bianjimotai').modal('hide')
+        let name = $('#sort1').val()
+        let jianjie = $('#introduce1').val()
+        let zhuangtai = $('input[name=show_hide]:checked').val()
+        let sid = JSON.parse( $(bianjithis).parent().attr('sortData')).id
+        for(let i= 0;i<sort.length;i++){
+          if(sort[i].id==sid){
+            sort[i].name = name
+            sort[i].intro = jianjie
+            sort[i].check = zhuangtai
+          }
+        }
+        show_page(sort,select_page)
+        show_cat(1,select_page)
+      })
+
+
+
+      /* 选择一页显示不同的条数数据 */
+      $(function(){
+        show_page(sort,select_page)
+        show_cat(now_page,select_page)
+        $('#select_page').change(function(){
+          now_page = 1
+          // 获取下拉框的条数、
+          select_page = parseInt($('#select_page option:checked').prop('value'))
+          console.log(select_page);
+          show_page(sort,select_page)
+          show_cat(now_page,select_page)
+          })
+          
+      })
+
+
+    </script>
+  </body>
+</html>

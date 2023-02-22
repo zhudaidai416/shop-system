@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <!-- bootstrap引入 -->
+    <link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.min.css">
+    <script src="../lib/bootstrap/js/jquery-1.11.3.js"></script>
+    <script src="../lib/bootstrap/js/bootstrap.min.js"></script>
+    <!-- <script src="../main.js"></script> -->
+     <style>
+        * {
+        padding: 0;
+        margin: 0;
+      }
+      body,html {
+        height: 100%;
+        background-color: rgb(227, 221, 221);
+        /* padding: 10px; */
+      }
+      #mydiv3{
+        padding: 20px;
+        background-color: rgb(227, 221, 221);
+        border-right: 30px solid white;
+      }
+      .my-container-fluid{
+        background: white;
+        padding: 20px 20px 10px 20px;
+        border-top: 1px solid gray;
+        border-bottom: 1px solid gray;
+      }
+      #container-fluid {
+        background: white;
+        /* height: 100%; */
+        padding: 20px;
+        margin-bottom: 20px;
+      }
+      #my-h4{
+        margin: 20px 0;
+      }
+      #my-p{
+        margin-left: 50px;
+      }
+      .mydiv6{
+        padding-top: 80px;
+      }
+      #mydiv1>button{
+        margin-bottom: 20px;
+        width: 80%;
+      }
+      #mydiv1>p{
+        margin-bottom: 0px;
+      }
+      /* #mydiv2>button,p,h4{
+       float: right;
+      } */
+      #mydiv2>button{
+        margin-bottom: 20px;
+        width: 80%;
+      }
+      #mydiv2>p{
+        margin-bottom: 0px;
+      }
+
+      #my-row2{
+        
+        border-bottom:1px solid gray;
+        height: 40px;
+        line-height: 40px;
+        margin-bottom: 20px;
+      }
+      #my-row3>div>div{
+        width: 20px; 
+        height: 20px; 
+        border: 1px solid black;  
+        border-radius:50%;
+        margin-left: 3%;
+      }
+      #my-row8{
+        border: 1px solid gray;
+        margin: 0 40px;
+        background-color: rgb(242, 237, 237);
+        border-radius: 5px;
+      }
+      #my-row9{
+        /* border: 1px solid gray; */
+        margin: 20px  40px 0 40px;
+        /* background-color: rgb(242, 237, 237); */
+        /* border-radius: 5px; */
+      }
+      #myimg-1{
+        width: 30px;
+      }
+      .my-active{
+        background-color: red;
+      }
+     </style>
+</head>
+<body>
+    <div class="container-fluid my-container-fluid" >
+        <div class="row">
+          <div class="mydiv col-lg-offset-0 col-lg-3 col-md-2 col-sm-2 col-xs-2">
+            <p>订单列表/订单详情</p>
+            <h4 id="my-h4" style="font-weight: bold;">订单号：<span id="myspan-1"></span></h4>
+            <p id="my-p">买家信息：<img id="myimg-1" src="../img/老虎头像.jpg" alt=""><span id="myspan-2"></span></p>
+            <p id="my-p">创建时间：<span id="myspan-4"></span></p>
+            <p style="margin-top:30px;"><span>订单信息</span>&emsp;&emsp;<span>物流信息</span></p>
+          </div>
+
+          <div class="mydiv6 col-lg-offset-0 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+            <p>联系电话：<span id="myspan-3"></span></p>
+            <p>备注等级：<img src="" alt=""></p>
+          </div>
+
+          <div class="mydiv1 col-lg-offset-5 col-lg-1 col-md-1 col-sm-1 col-xs-1" id="mydiv1">
+            <button class="btn btn-info" id="beizu">备注</button>
+            <p>订单状态</p>
+            <h4 id="myh4-1"></h4>
+          </div>
+
+          <div class="mydiv2 col-lg-offset-0 col-lg-1 col-md-1 col-sm-1 col-xs-1" id="mydiv2">
+            <button class="btn btn-info" id="chuku">出库</button>
+            <p>订单金额</p>
+            <h4>¥<span id="myspan-5"></span></h4>
+          </div>
+        </div>
+    </div>
+
+
+
+    <div id="mydiv3">
+      <div class="container-fluid my-container-fluid"  id="container-fluid">
+          <div class="row" id="my-row2">
+            <div class="mydiv col-lg-offset-0 col-lg-2 col-md-1 col-sm-1 col-xs-1"  >
+              <h4 style="font-weight:bold;">订单进度</h4>
+            </div>
+          </div>
+  
+          <div class="row" id="my-row3">
+            <div class="mydiv col-lg-offset-0 col-lg-3 col-md-2 col-sm-2 col-xs-2">
+              <div></div>
+              <h5 id="myh5-1-1">待付款</h5>
+              <!-- <p><span>2017-10-01</span> <span>12:00</span></p> -->
+            </div>
+  
+            <div class="mydiv col-lg-offset-0 col-lg-3 col-md-3 col-sm-3 col-xs-3">
+              <div></div>
+              <h5 id="myh5-1-2">待出库</h5>
+              <!-- <p><span>2017-10-01</span> <span>12:00</span></p> -->
+            </div>
+  
+            <div class="mydiv1 col-lg-offset-0 col-lg-3 col-md-3 col-sm-3 col-xs-3" id="mydiv5">
+              <div></div>
+              <h5 id="myh5-1-3">已出库</h5>
+              <!-- <p><span>2017-10-01</span> <span>12:00</span></p> -->
+            </div>
+  
+            <div class="mydiv2 col-lg-offset-0 col-lg-3 col-md-3 col-sm-3 col-xs-3" id="mydiv7">
+              <div></div>
+              <h5 id="myh5-1-4">已完成</h5>
+              <!-- <p><span>2017-10-01</span> <span>12:00</span></p> -->
+            </div>
+          </div>
+      </div>
+
+
+      <div class="container-fluid my-container-fluid"  id="container-fluid">
+          <div class="row" id="my-row2">
+            <div class="mydiv col-lg-offset-0 col-lg-2 col-md-1 col-sm-1 col-xs-1"  >
+              <h4 style="font-weight:bold;">订单信息</h4>
+            </div>
+          </div>
+  
+
+
+          <div class="row" id="my-row4">
+            <div class="mydiv col-lg-offset-0 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+              <p>会员卡号：<span>43215321432</span></p>
+            </div>
+  
+            <div class="mydiv col-lg-offset-0 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+              <p>订单积分：<span>300</span></p>
+            </div>
+  
+            <div class="mydiv1 col-lg-offset-0 col-lg-4 col-md-4 col-sm-4 col-xs-4" id="mydiv8">
+              <p>订单类型：普通订单</p>
+            </div>
+          </div> 
+
+
+          <div class="row" id="my-row5">
+            <div class="mydiv col-lg-offset-0 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+              <p>收货地址：<span id="myspan-6"></span>,<span id="myspan-7"></span>,浙江省杭州市西湖区工专路</p>
+            </div>
+          </div>
+
+          <div class="row" id="my-row6">
+            <div class="mydiv col-lg-offset-0 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+              <p>买家留言：<span>包装好点</span></p>
+            </div>
+          </div>
+
+          <div class="row" id="my-row7">
+            <div class="mydiv col-lg-offset-0 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+              <h4 style="font-weight:bold; margin-bottom: 30px;">订单商品</h4>
+            </div>
+          </div>
+
+          <div class="row" id="my-row8">
+            <div class="mydiv col-lg-offset-1 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+              <h5 style="font-weight:bold;">商品编号</h5>
+            </div>
+            <div class="mydiv col-lg-offset-0 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+              <h5 style="font-weight:bold;">商品名称</h5>
+            </div>
+            <div class="mydiv col-lg-offset-0 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+              <h5 style="font-weight:bold;">单价</h5>
+            </div>
+            <div class="mydiv col-lg-offset-0 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+              <h5 style="font-weight:bold;">数量/件</h5>
+            </div>
+            <div class="mydiv col-lg-offset-1 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+              <h5 style="font-weight:bold;">金额</h5>
+            </div>
+          </div>
+
+
+          <div class="row" id="my-row9">
+            <div class="mydiv col-lg-offset-1 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+              <p id="myp-1"></p>
+            </div>
+            <div class="mydiv col-lg-offset-0 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+              <p id="myp-2"></p>
+            </div>
+            <div class="mydiv col-lg-offset-0 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+              <p id="myp-3"></p>
+            </div>
+            <div class="mydiv col-lg-offset-0 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+              <p id="myp-4"></p>
+            </div>
+            <div class="mydiv col-lg-offset-1 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+              <p id="myp-5"></p>
+            </div>
+      
+          </div>
+        
+          <!-- <div class="row" id="my-row9">
+            <div class="mydiv col-lg-offset-1 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+              <p>123456</p>
+            </div>
+            <div class="mydiv col-lg-offset-0 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+              <p>矿泉水 550ml</p>
+            </div>
+            <div class="mydiv col-lg-offset-0 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+              <p>2.00</p>
+            </div>
+            <div class="mydiv col-lg-offset-0 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+              <p>1</p>
+            </div>
+            <div class="mydiv col-lg-offset-1 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+              <p>2.00</p>
+            </div>
+          </div> -->
+          <div class="row" id="my-row9">
+            <div class="mydiv col-lg-offset-1 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+              <h5 style="font-weight:bold;">总计</h5>
+            </div>
+            <div class="mydiv col-lg-offset-4 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+              <h5 id="myh5-1" style="font-weight:bold;"></h5>
+            </div>
+            <div class="mydiv col-lg-offset-1 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+              <h5 id="myh5-2" style="font-weight:bold;"></h5>
+            </div>
+           
+          </div>
+
+      </div>
+
+
+      <div class="container-fluid my-container-fluid"  id="container-fluid">
+        <div class="row" id="my-row2">
+          <div class="mydiv col-lg-offset-0 col-lg-2 col-md-1 col-sm-1 col-xs-1"  >
+            <h4 style="font-weight:bold;">订单进度</h4>
+          </div>
+        </div>
+
+        <div class="row" id="my-row10">
+          <div class="mydiv  col-lg-offset-0 col-lg-3 col-md-2 col-sm-2 col-xs-2" style="border-bottom: 1px dash  black;">
+            <p>商品数量：<span id="myspan-8"></span></p>
+            <p>商品总价：¥<span id="myspan-9"></span></p>
+            <p>优惠总额：<span>¥5.00</span></p>
+            <p>运费：<span>¥10.00</span></p>
+          </div>
+        </div>
+
+        <div class="mydiv  col-lg-offset-0 col-lg-3 col-md-3 col-sm-3 col-xs-3" style="border-top: 1px dashed  black; padding-left: 0;">
+          <h2>实付款：¥<span id="myspan-10"></span></h2>
+        </div>
+      </div>
+    </div>
+
+
+    <script>
+     
+      let datai1=localStorage.getItem('datai')   //userOrderData
+      let datai=JSON.parse(datai1)
+
+      let dataj1=localStorage.getItem('dataj')   //userWareData
+      let dataj=JSON.parse(dataj1)
+
+      let datak1=localStorage.getItem('datak')   //userData
+      let datak=JSON.parse(datak1)
+
+      let dataId1=localStorage.getItem('dataId')   //userData
+      let dataId=JSON.parse(dataId1)
+
+      let userData1=localStorage.getItem('userData')
+      let userData=JSON.parse(userData1)    //收件人
+
+      let userWareData1=localStorage.getItem('userWareData')
+      let userWareData=JSON.parse(userWareData1)   //商品名称
+
+      let userOrderData1=localStorage.getItem('userOrderData')
+      let userOrderData=JSON.parse(userOrderData1)   //订单状态
+
+      let abc=0
+
+      $('#myspan-1').text(userOrderData[datai].id)
+      $('#myspan-2').text(userData[datak].name)
+      $('#myspan-6').text(userData[datak].name)
+      $('#myspan-3').text(userData[datak].phone)
+      $('#myspan-7').text(userData[datak].phone)
+      $('#myspan-4').text(userOrderData[datai].placeTime)
+      
+      if(userOrderData[datai].check==-2){
+                  abc='已取消'
+      }
+      if(userOrderData[datai].check==-1){
+                  abc='待付款'
+      }
+      if(userOrderData[datai].check==1){
+                  abc='待出库'
+      }
+      if(userOrderData[datai].check==2){
+                  abc='已出库'
+      }
+      if(userOrderData[datai].check==3){
+                  abc='已完成'
+      }
+      $('#myh4-1').text(abc)
+      $('#myspan-5').text((userWareData[dataj].price*userOrderData[datai].wareNum))
+      $('#myp-1').text(userWareData[dataj].id)
+      $('#myp-2').text(userWareData[dataj].name)
+      $('#myp-3').text(userWareData[dataj].price)
+      $('#myp-4').text(userOrderData[datai].wareNum)
+      $('#myp-5').text((userWareData[dataj].price*userOrderData[datai].wareNum))
+      
+      $('#myh5-1').text(userOrderData[datai].wareNum)
+      $('#myh5-2').text((userWareData[dataj].price*userOrderData[datai].wareNum))
+      
+
+      $('#myspan-8').text(userOrderData[datai].wareNum)
+      $('#myspan-9').text((userWareData[dataj].price*userOrderData[datai].wareNum))
+      $('#myspan-10').text((userWareData[dataj].price*userOrderData[datai].wareNum-5+10))
+
+
+   
+
+      console.log($('#my-row3>div>h5').text());
+     
+      // if ($('#myh5-1-1').text()==abc) {
+      //   $('#myh5-1-1').prev().addClass('my-active')
+      // }
+      // if ($('#myh5-1-2').text()==abc) {
+      //   $('#myh5-1-2').prev().addClass('my-active')
+      // }
+      // if ($('#myh5-1-3').text()==abc) {
+      //   $('#myh5-1-3').prev().addClass('my-active')
+      // }
+      // if ($('#myh5-1-4').text()==abc) {
+      //   $('#myh5-1-4').prev().addClass('my-active')
+      // }
+
+      let ccc=0
+
+      arr=$('#my-row3>div>h5')
+      for (let i = 0; i < arr.length; i++) {
+        if (arr.eq(i).text()==abc) {
+          ccc=i
+        } 
+      }
+
+      for (let j = 0; j <= ccc; j++) {
+        arr.eq(j).prev().addClass('my-active')
+      }
+
+
+
+
+      $('#chuku').click(function () {
+        if (userOrderData[datai].check==1) {
+          localStorage.setItem('userData', JSON.stringify(userData)) //用户表
+          localStorage.setItem('userWareData', JSON.stringify(userWareData)) //商品表
+          localStorage.setItem('userOrderData', JSON.stringify(userOrderData)) //订单表
+ 
+          $('#content').load('./订单出库.html')
+        }   
+        })
+
+     
+    </script>
+</body>
+</html>

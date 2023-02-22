@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 引入bootstrap插件 -->
+    <link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.min.css">
+    <script src="../lib/bootstrap/js/jquery-1.11.3.js"></script>
+    <script src="../lib/bootstrap/js/bootstrap.min.js"></script>
+    <!-- 引入css -->
+    <link rel="stylesheet" href="../css/店铺管理-基本设置.css">
+    <!-- <script src="../main.js"></script> -->
+    
+</head>
+<body>
+    <div class="container-fluid main-1">
+        <div class="row fa">
+            <div class="col-xs-2 son-left"><!-- 左边 -->
+                <ul>
+                    <li data-str="./店铺管理-基本设置.html .son-right" class="active1">基本设置</li>
+                    <li data-str="./店铺管理-基本设置-店铺设计.html">店铺设计</li>
+                    <li data-str="./店铺管理-基本设置-安全设计.html">安全设置</li>
+                    <li data-str="./店铺管理-基本设置-账号绑定.html">账号绑定</li>
+                </ul>
+            </div>
+            <div class="col-xs-10 son-right"><!-- 右边 -->
+                <div class="row">
+                    <div class="col-xs-6 son-right-left"><!-- 中间 -->
+                        <form>
+                            <div class="form-group">
+                              <label for="shop-name">店铺名称</label>
+                              <input type="text" class="form-control" id="shop-name" placeholder="请输入店铺名称">
+                            </div>
+                            <div class="form-group">
+                              <label for="shop-phone">客服电话</label>
+                              <input type="text" class="form-control" id="shop-phone" placeholder="请输入电话">
+                            </div>
+                            <div class="form-group has-feedback">
+                                <label class="control-label" for="shop-intro">店铺简介</label>
+                                <input type="text" maxlength="30" class="form-control" id="shop-intro" placeholder="欢迎光临我的小店" >
+                                <span class="form-control-feedback"><b class="word_count">0</b>/30</span>
+                            </div>
+                            <label>选择类目</label>
+                            <div class="form-group">
+                                <select class="form-control" id="shop-sort">
+                                    <option>请选择</option>
+                                    <option>干果</option>
+                                    <option>生鲜</option>
+                                    <option>肉类</option>
+                                    <option>夏季特卖</option>
+                                    <option>新品上架</option>
+                                    <option>情人节特卖</option>
+                                    <option>本周折扣</option>
+                                </select>
+                            </div>
+                            <label>所在省市</label>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <select class="form-control" id="address-1">
+                                            <option value="0">浙江省</option>
+                                            <option value="1">湖北省</option>
+                                            <option value="2">湖南省</option>
+                                            <option value="3">河北省</option>
+                                            <option value="4">河南省</option>
+                                            <!-- <option>浙江省</option> -->
+                                        </select>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <select class="form-control" id="address-2">
+                                            <option>杭州市</option>
+                                            <option>宁波市</option>
+                                            <option>温州市</option>
+                                            <option>金华市</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-group has-feedback">
+                                    <label class="control-label" for="main-address">详细地址</label>
+                                    <input maxlength="30" type="text" class="form-control" id="main-address" placeholder="请输入地址" >
+                                    <span  class="form-control-feedback"><b class="word_count">0</b>/30&ensp;</span>
+                                </div>
+                            </div>
+        
+                        </form>
+                    </div>
+                    <div class="col-xs-6 son-right-right"><!-- 右边 -->
+                        <div class="row">
+                            <p>店铺小程序</p>
+                            <img src="../img/小程序.png" alt="店铺小程序" class="img-circle img-1">
+                            <button>o保存图片</button>
+                        </div>
+                        <div class="row">
+                            <h5><b>商家地理位置:</b></h5>
+                            <img src="../img/地图.jpg" alt="店铺小程序" class="img-2">
+                        </div>
+                    </div>
+                </div>
+                <div class="row son-right-bottom"><!-- 底部 -->
+                    <div class="col-xs-10"></div>
+                    <button type="button" class="btn btn-default" id="btn-back">返回</button>
+                    <button type="button" class="btn btn-primary" id="btn-save">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        /* 获取user */
+        let user = JSON.parse(sessionStorage.getItem('user'))
+        /* 实现二级下拉框内容联动*/
+        //创建一个二维数组
+        let cities =[["杭州市","宁波市","温州市","金华市"],
+                     ["武汉市","黄冈市","襄阳市","荆州市"],
+                     ["长沙市","郴州市","株洲市","岳阳市"],
+                     ["石家庄市","邯郸市","廊坊市","保定市"],
+                     ["郑州市","洛阳市","开封市","安阳市"]
+                    ]
+        function changeCity(index){
+            //清空第二个下拉列表的值
+            $('#address-2').empty()
+            /* 遍历二维数组 */
+            for (let i = 0; i < cities.length; i++) {
+                //判断index和数组里的下标i
+                if (index == i) {
+                    //遍历循环写到第二个下拉框里面去
+                    for (let j = 0; j < cities[i].length; j++) {
+                        $('#address-2').append(`<option>${cities[i][j]}</option>`) 
+                    }
+                } 
+            }
+        }
+
+        /* 绑定第一个下拉菜单改变的onchange事件 */
+        $('#address-1').on('change',function(){
+            index = $(this).val()
+            changeCity(index)
+        })
+
+        
+        
+        
+
+        /* 点击左边导航栏 加载对应的页面*/
+        $('.son-left li').on('click',function(){
+            $(this).addClass('active1').siblings().removeClass('active1')
+            let data_scr = $(this).attr('data-str')
+            $('.son-right').load(data_scr)
+        })
+
+
+        /* 将店铺信息读取到对应的form表单里面 */
+        $(function init(){
+            if (user.sName!='') {
+                $('.son-right-left #shop-name').val(user.sName)
+                console.log(user.sName);
+            }
+            if (user.sPhone!='') {
+                $('.son-right-left #shop-phone').val(user.sPhone)
+            }
+            if (user.sIntro!='') {
+                $('.son-right-left #shop-intro').val(user.sIntro)
+            }
+            if (user.sAddress!='') {
+                $('.son-right-left #main-address').val(user.sAddress)
+            }
+            $('.word_count').eq(0).text($('.word_count').eq(0).parent().prev().val().length)
+            $('.word_count').eq(1).text($('.word_count').eq(1).parent().prev().val().length)
+        })
+
+        /* input里面字数变化 */
+        $('.son-right-left input').on('input',function(){
+            let count = $(this).val().length
+            $(this).parent().find('.word_count').text(count)
+        })
+        
+
+        /* 点击保存 将数据写入数组里面去 */
+        $('#btn-save').on('click',function(){
+            /* 获取form里面的数据 */
+            let shop_name = $('.son-right-left #shop-name').val()
+            let shop_phone = $('.son-right-left #shop-phone').val()
+            let shop_intro = $('.son-right-left #shop-intro').val()
+            let shop_sort = $('.son-right-left #shop-sort').val()
+            let shop_address1 = $('.son-right-left #address-1').val()
+            let shop_address2 = $('.son-right-left #address-2').val()
+            let shop_main_address = $('.son-right-left #main-address').val()
+            /* 从浏览器中取值 */
+            let userStr = sessionStorage.getItem('user')
+            let user1 = JSON.parse(userStr)
+
+            //地址拼接
+            let address = shop_address1+shop_address2+shop_main_address
+            user1.sName = shop_name
+            user1.sPhone = shop_phone
+            user1.sIntro = shop_intro
+            user1.sSort = shop_sort
+            user1.sAddress = address
+            /* 存到浏览器中去 */
+            let user = JSON.stringify(user1)
+            sessionStorage.setItem('user',user)
+
+            /* 清空表单类容 */
+            $('.son-right-left form')[0].reset()
+            init()
+        })
+
+
+
+    </script>
+</body>
+</html>

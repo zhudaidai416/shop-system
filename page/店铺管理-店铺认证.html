@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 引入bootstrap插件 -->
+    <link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.min.css">
+    <script src="../lib/bootstrap/js/jquery-1.11.3.js"></script>
+    <script src="../lib/bootstrap/js/bootstrap.min.js"></script>
+
+    <style>
+        .main-2 .son-1{
+            border: 1px solid gray;
+            padding-top: 20px;
+        }
+        .load-img1,
+        .load-img2{
+            width: 150px;
+            height: 150px;
+            border:2px dashed gray;
+            margin-right: 20px;
+        }
+        .load-img1{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        .load-img1 > img{
+            width: 30px;
+        }
+        .load-img1 > span {
+            position: absolute;
+            bottom: 0px;
+            margin-bottom: 10%;  
+        }
+        .load-img2{
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid main-2">
+        <div class="row fa">
+            <div class="col-sm-12 son-1">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label" for="card-code">社会信用代码：</label>
+                      <div class="col-sm-6">
+                        <input class="form-control" type="text" id="card-code" placeholder="请输入数字和英文">
+                        <p>支持工商营业执照注册号和统一社会信用代码<a>了解更多</a></p>
+                      </div>
+                      
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label" for="firm-name">企业名称:</label>
+                      <div class="col-sm-6">
+                        <input class="form-control" type="text" id="firm-name" placeholder="请输入">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="valid-time">工商营业执照有效截止时间:</label>
+                        <div class="col-sm-6">
+                          <input class="form-control" type="datetime-local" id="valid-time" placeholder="请输入">
+                          <p>截止日期需大于60天,如截止日期为长期或无,请勾选"长期有效"</p> 
+                        </div>
+                        <div class="checkbox col-sm-2" >
+                            <label><input type="checkbox" checked="checked"> 长期有效</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="firm-name">上传营业执照:</label>
+                        <div class="col-sm-6">
+                            <div class="load-img1 pull-left">
+                                <img src="../img/加号.png" alt="加号" onclick="uploading.click()">
+                                <span>上传</span>
+                                <input multiple type="file" accept="image/*" name="uploading" id="uploading" style="display: none;" />
+                            </div>
+                            <div class="load-img2 pull-left"></div>
+                            <p class="clearfix"></p>
+                            <p>1请上传清晰、完整、无遮罩物的营业执照照片</p> 
+                            <p>2.要求原件红章清晰，如位复印件需加盖公司公章</p> 
+                            <p>3.支持扩展名jpg .png,大小不超过5M</p> 
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-5"></div>
+                        <button type="button" class="btn btn-primary" id="Submit">提交</button>&ensp;&ensp;
+                        <button type="button" class="btn btn-default">返回</button>
+                    </div> 
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        
+
+        /* 点击提交上传信息 */
+        $('#Submit').on('click',function(){
+            /*获取form表单里面的数据 */
+            let sCode = $('.son-1 #card-code').val()
+            let sCompany = $('.son-1 #firm-name').val()
+            let deadLine = $('.son-1 #valid-time').val()
+
+            //拿去数据
+            let userStr = sessionStorage.getItem('user')
+            let user1 = JSON.parse(userStr)
+            //将数据写入对象里面去
+            user1.sCode = sCode
+            user1.sCompany = sCompany
+            user1.deadLine = deadLine
+
+            /* 存到浏览器里面 */
+            let user = JSON.stringify(user1)
+            sessionStorage.setItem('user',user)
+            
+            //清空表单
+            $('.son-1 form')[0].reset()
+
+        })
+
+        /* 图片上传 */
+        $('#uploading').change (function () {
+            files = this.files;
+          if (FileReader && files && files.length) {
+            var fr = new FileReader();
+            fr.onload = function () {
+                $('.load-img2').html('').css({backgroundImage:`url(${fr.result})`})
+                let user1 = JSON.parse(sessionStorage.getItem('user'))
+                user1.sLicence = fr.result
+                sessionStorage.setItem('user',JSON.stringify(user1))
+            };
+            fr.readAsDataURL(files[0]);
+          }
+        });
+    </script>
+    
+</body>
+</html>

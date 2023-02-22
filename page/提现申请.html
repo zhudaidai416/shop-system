@@ -1,0 +1,95 @@
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>提现申请</title>
+    <link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <script src="../lib/bootstrap/js/jquery-1.11.3.js"></script>
+    <script src="../lib/bootstrap/js/bootstrap.min.js"></script>
+
+    <style>
+        html,
+        body {
+            padding: 0;
+            margin: 0;
+            background-color: rgba(240, 242, 245, 1);
+        }
+
+        #withdrawalApplication_box {
+            margin-top: 50px;
+            margin-left: 50px;
+            background-color: white;
+        }
+        #withdrawalApplication_box div{
+            margin: 10px;
+        }
+
+        #withdrawalApplication_nav {
+            font-size: 14px;
+            overflow: hidden;
+        }
+
+        #withdrawalApplication_nav div {
+            float: left;
+            padding:10px ;
+           
+        }
+        #withdrawalApplication_nav :first-child{
+            border-bottom: 2px blue solid;
+            color: blue;
+        }
+        #cardBox{
+width: 220px;
+        }
+        #accountBox div{
+            float: left;
+        }
+    #accountBox div label,#accountBox div  a{
+            float: left;           
+        }
+        #accountBox div label span{
+            cursor: pointer;
+            padding: 0px 2px;
+        }
+        #accountBox{
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="withdrawalApplication_box">
+        <div id="withdrawalApplication_nav">
+            <div>提现申请</div>
+            <div>提现记录</div>
+        </div>
+        <div>
+            <div>
+                <span>店铺名称：</span><span>DragoCai的小店</span>
+            </div>
+            <div>
+                <span>待结算金额：</span><span>¥5.80</span>
+            </div>
+            <div>
+                <span>可用金额：</span><span>¥5.80</span>
+            </div>
+            <div id="accountBox">
+                <div>到账账户</div>
+                <div id="cardBox">
+                    <label for="card01"><input type="radio" name="cardname" id="card01">工商银行 李敏 尾号3356<span>改</span><span>删</span></label>
+                    <label for="card02"><input type="radio" name="cardname" id="card02">工商银行 李敏 尾号3357<span>改</span><span>删</span></label>
+                    <a href="">添加银行卡</a>
+                </div>
+            </div>
+            <div><span>提现金额：</span><input type="text" placeholder="单日提现不超过50,000元"><a href="">全额提现</a></div>
+        </div>
+        <div>
+            <button type="button">提交申请</button>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- bootstrap引入 -->
+    <link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.min.css">
+    <script src="../lib/bootstrap/js/jquery-1.11.3.js"></script>
+    <script src="../lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../main.js"></script>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      body,html {
+        /* height: 100%; */
+        background-color: rgb(227, 221, 221);
+        /* padding: 10px; */
+      }
+      .my-container-fluid {
+        background: white;
+        /* height: 100%; */
+        /* padding: 20px; */
+      }
+      .row>.mydiv {
+        /* background-color: white; */
+        height: 50px;
+        line-height: 50px;
+        font-size: 16px;
+        padding-right: 0;
+        margin-bottom: 10px;
+      }
+      .mydiv > span {
+        width: 40%;
+      }
+      .mydiv > input {
+        width: 60%;
+        height: 30px;
+        border-radius: 5px;
+      }
+      #myinput1,
+      #myinput2 {
+        width: 30%;
+      }
+      .form-control {
+        width: 60%;
+        display: inline-block;
+      }
+
+      #mytitle{
+        width: 100%;
+        height:50px;
+        line-height: 50px;
+        background: white;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        border-bottom: 1px solid gray;
+      }
+      #mytitle>div{
+        width: 10%;
+        height: 50px;
+      }
+      #my-row1{
+        padding: 0;
+        padding-right: 100px;
+      }
+      #my-row1>div{
+        padding: 10px;
+        
+      }
+      .btn-info{
+        width: 30%;
+        padding: 0;
+        text-align: center;
+        height: 30px;
+        font-size: 12px;
+      }
+      #my-row-2, #my-row-3{
+        height: 50px;
+        line-height: 50px;
+        font-weight: bold;
+        margin: 20px 0;
+        background-color: rgb(227, 221, 221);
+      }
+      #my-row-4>div:not(5){
+        display: flex;
+        flex-direction: column;
+        align-items: left;
+        justify-content:center;
+      }
+      #my-row-4>div:nth-child(1){
+        display: flex;
+        flex-direction: column;
+        align-items:flex-end;
+        justify-content:center;
+      }
+      #my-row-4>div:nth-child(2){
+       margin-top: 10px;
+      }
+
+
+      #my-row-3,#my-row-4{
+        border-bottom: 1px solid gray;
+      }
+      #my-container-fluid{
+        margin-bottom: 20px;
+      }
+      #my-xiangqing{
+        color: blue;
+        cursor: pointer;
+      }
+      .my-state1{
+        width: 40px;
+        height: 20px;
+        /* background-color: blue; */
+        color: white;
+      }
+      #myimg{
+        width: 30%;
+      }
+      #myspan{
+        width: 50%;
+        font-size: 12px;
+      }
+      #myimg-2{
+        width: 50%;
+        border-radius: 5px;
+      }
+      #startTime,#endTime{
+        width: 30%;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="container-fluid  my-container-fluid"  id="container-fluid" >
+      <div class="row">
+        <div class="mydiv col-lg-offset-0 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+          <span>订单编号：</span>
+          <input id="mysearch-dingdan" class="form-control" placeholder="请输入" type="text" />
+        </div>
+        <div class="mydiv col-lg-offset-0 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+          <span>商品名称：</span>
+          <input id="mysearch-mingcheng" class="form-control" placeholder="请输入" type="text" />
+        </div>
+        <div class="mydiv col-lg-offset-0 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+          <span>&emsp;收件人：</span>
+          <input id="mysearch-people" class="form-control" placeholder="请输入" type="text" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="mydiv col-lg-offset-0 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+          <span>&emsp;运单号：</span>
+          <input id="mysearch-number" class="form-control" placeholder="请输入" type="text" />
+        </div>
+        <div class="mydiv col-lg-offset-0 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+          <span>订单状态：</span>
+          <!-- <input placeholder="请选择" type="text"/> -->
+          <select id="mysearch-zhuangtai" class="form-control">
+            <option value="0"></option>
+            <option value="-2">已取消</option>
+            <option value="-1">待付款</option>
+            <option value="1">待出库</option>
+            <option value="2">已出库</option>
+            <option value="3">已完成</option>
+          </select>
+        </div>
+        <div class="mydiv col-lg-offset-0 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+          <span>下单时间：</span>
+          <input class="form-control" id="startTime" value="请选择开始时间" type='datetime-local'/>
+          &nbsp;<span>——</span>&nbsp;
+          <input id="endTime" class="form-control" placeholder="请选择结束时间" type="datetime-local"/>
+        </div>
+      </div>
+      <div class="row">
+        <div class=" mydiv col-lg-offset-0 col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+          <button class="btn btn-info" id="chaxun">查询</button>
+          <button class="btn btn-info" id="chongzhi">重置</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="mytitle" >
+        <div>
+            <span>全部</span>
+            <span>(</span><span id="all"></span><span>)</span>
+        </div>
+        <div>
+            <span>待付款</span>
+            <span>(</span><span id="dfk"></span><span>)</span>
+        </div>
+        <div>
+            <span>待出库</span>
+            <span>(</span><span id="dck"></span><span>)</span>
+        </div>
+        <div>
+            <span>已出库</span>
+            <span>(</span><span id="yck"></span><span>)</span>
+        </div>
+        <div>
+            <span>已完成</span>
+            <span>(</span><span id="ywc"></span><span >)</span>
+        </div>
+        <div>
+            <span>已取消</span>
+            <span>(</span><span id="yqx"></span><span>)</span>
+        </div>
+        <div>
+            <span>售后中</span>
+            <span>(</span><span>?</span><span>)</span>
+        </div>
+    </div>
+
+
+    <div  class="container-fluid my-container-fluid" >
+        <div class="row" id="my-row1">
+            <div class="col-lg-offset-0 col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                <input type="checkbox" id="allSelector">
+                <span >全选</span>
+            </div>
+            <div class="col-lg-offset-0 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                <button class="btn btn-info" id="daochubaobiao">导出报表</button>
+                <button class="btn btn-info" id="chakanbaobiao">查看报表</button>
+            </div>
+        </div>
+
+        <div class="row"  id="my-row-2">
+            <div class="col-lg-offset-0 col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                <span>商品信息</span>
+            </div>
+            <div class="col-lg-offset-0 col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                <span>单价/数量</span>
+            </div>
+            <div class="col-lg-offset-0 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                <span>订单金额</span>
+            </div>
+            <div class="col-lg-offset-0 col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                <span>买家用户</span>
+            </div>
+            <div class="col-lg-offset-0 col-lg-2 col-md-1 col-sm-1 col-xs-1">
+                <span>物流信息</span>
+            </div>
+            <div class="col-lg-offset-0 col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                <span>售后</span>
+            </div>
+            <div class="col-lg-offset-0 col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                <span>订单状态</span>
+            </div>
+            <div class="col-lg-offset-0 col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                <span>操作</span>
+            </div>
+        </div>
+
+      <div id="my-container-fluid">  
+      </div>
+    </div>
+ 
+
+
+
+
+
+    <script>
+      let user=sessionStorage.getItem('customer')
+      let userData=JSON.parse(user)
+
+      let userBill=sessionStorage.getItem('bill')
+      let userBillData=JSON.parse(userBill)
+
+      let userCard=sessionStorage.getItem('card')
+      let userCardData=JSON.parse(userCard)
+
+      let userWare=sessionStorage.getItem('ware')
+      let userWareData=JSON.parse(userWare)
+
+      let userSpec=sessionStorage.getItem('spec')
+      let userSpecData=JSON.parse(userSpec)
+
+      let userSort=sessionStorage.getItem('sort')
+      let userSortData=JSON.parse(userSort)
+
+      let userOrder=sessionStorage.getItem('order')
+      let userOrderData=JSON.parse(userOrder)
+
+      let userCustomer=sessionStorage.getItem('customer')
+      let userCustomerData=JSON.parse(userCustomer)
+
+      let userCashOut=sessionStorage.getItem('cashOut')
+      let userCashOutData=JSON.parse(userCashOut)
+
+
+  
+      let abc=0,all=0,yqx=0,dfk=0,dck=0,yck=0,ywc=0;
+      let name1=userOrderData.id   //订单编号
+      let name2=userWareData.name   //商品名称
+      let name3=userData.name   //收件人
+      //let name4=userOrderData.id   //运单号
+      let name5=userOrderData.check   //订单状态
+
+
+     let data1=[...userOrderData]
+
+     let dataarr=[...userOrderData]
+
+     let WareData=[...userWareData] 
+
+     let myuserData=[...userData] 
+
+     let bbbb=0
+
+
+
+     showData(data1);
+     function  showData(data){
+        let abc=0,all=0,yqx=0,dfk=0,dck=0,yck=0,ywc=0;
+        for (let i = 0; i < data.length; i++) {
+          for(let j = 0; j < userWareData.length; j++){
+            for (let k = 0; k < userData.length; k++) {
+              if (data[i].wid==userWareData[j].id&&data[i].uid==userData[k].id) {
+                
+ 
+                      all++;
+                      if(data[i].check==-2){
+                        abc='已取消'
+                        yqx++
+                      }
+                      if(data[i].check==-1){
+                        abc='待付款'
+                        dfk++
+                      }
+                      if(data[i].check==1){
+                        abc='待出库'
+                        dck++
+                      }
+                      if(data[i].check==2){
+                        abc='已出库'
+                        yck++
+                      }
+                      if(data[i].check==3){
+                        abc='已完成'
+                        ywc++
+                      }
+
+                      let tupian=0
+                      if (userWareData[j].name=='榛子') {
+                        tupian='../img/商品/榛子.jpg'
+                      }
+                      if (userWareData[j].name=='无花果') {
+                        tupian='../img/商品/无花果.jpg'
+                      }
+                      if (userWareData[j].name=='杏仁') {
+                        tupian='../img/商品/杏仁.jpg'
+                      }
+                      if (userWareData[j].name=='桂圆') {
+                        tupian='../img/商品/桂圆.jpg'
+                      }
+                      if (userWareData[j].name=='澳洲牛肉') {
+                        tupian='../img/商品/澳洲牛肉.jpg'
+                      }
+
+                      $("#my-container-fluid").append(`
+                        <div class="row"  id="my-row-3">
+                          <div class="col-lg-offset-0 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                              <input type="checkbox" class='myinput'>
+                              <span>订单号：</span>
+                              <span>${data[i].id}</span>
+                          </div>
+                          <div class="col-lg-offset-0 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                              <span>下单时间</span>
+                              <span>${data[i].placeTime}</span>
+                          </div>
+                          <div class="col-lg-offset-0 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                              <span>付款时间</span>
+                              <span>${data[i].payTime}</span>
+                          </div>
+                        </div>
+
+                        <div class="row"  id="my-row-4">
+                          <div class="col-lg-offset-0 col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                              <img id='myimg-2' src=${tupian} alt="">
+                          </div>
+                          <div class="col-lg-offset-0 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                              <p>${userWareData[j].name} </p>
+                          </div>
+                          <div class="col-lg-offset-0 col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                              <p>X <span>${userWareData[j].price}
+                              </span></p>
+                              <p>X <span>${data[i].wareNum}</span></p>
+                          </div>
+                          <div class="col-lg-offset-0 col-lg-2 col-md-1 col-sm-1 col-xs-1">
+                              <p>商品总价：¥${userWareData[j].price*data[i].wareNum}</p>
+                              <p>优惠总额：¥5.00</p>
+                              <p>运&emsp;&emsp;费：¥10.00</p>
+                              <p>实际付款：¥${userWareData[j].price*data[i].wareNum-5+10}</p>
+                          </div>
+                          <div id='mydiv-col' class="col-lg-offset-0 col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                              <img id='myimg' src="../img/老虎头像.jpg">
+                              <span id='myspan' >${userData[k].name}</span>
+                          </div>
+                          <div class="col-lg-offset-0 col-lg-2 col-md-1 col-sm-1 col-xs-1">
+                              <p>申通快递</p>
+                              <p>3212456666631</p>
+                          </div>
+                          <div class="col-lg-offset-0 col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                              <p>待买家处理退款</p>
+                              <p>处理退款</p>
+                          </div>
+                          <div class="col-lg-offset-0 col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                              <p class='${j}'>${abc}</p>
+                            
+                          </div>
+                          <div class="col-lg-offset-0 col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                              <p id='my-xiangqing' data-id=${userOrderData[i].id} data-i='${i}' data-j='${j}' data-k='${k}'>订单详情</p>
+                          </div>
+                        </div>`
+                          
+                      )
+
+                      if (abc=='待出库') {
+                          $(`.${j}`).after(`<p id="my-state1" dck-id=${userOrderData[i].id}  dck-i="${i}" dck-j="${j}" dck-k="${k}"  class="my-state1 btn btn-info">出库</p>`)
+                      }
+
+
+                      $('#all').text(all)   
+                      $('#yqx').text(yqx)
+                      $('#dfk').text(dfk)
+                      $('#dck').text(dck)
+                      $('#yck').text(yck)
+                      $('#ywc').text(ywc)
+                     
+                  
+                
+
+
+              }
+            }
+
+          }
+        }
+      }
+                  
+     
+     
+
+
+
+      $("#chaxun").click(function () {     //点击查询按钮时，执行函数
+
+        $('#all').text('')   
+        $('#yqx').text('')
+        $('#dfk').text('')
+        $('#dck').text('')
+        $('#yck').text('')
+        $('#ywc').text('')
+        let abc=0,all=0,yqx=0,dfk=0,dck=0,yck=0,ywc=0;
+
+        let dingdan = $("#mysearch-dingdan").val();
+        let mingcheng = $("#mysearch-mingcheng").val();
+        let people = $("#mysearch-people").val();
+        let number = $("#mysearch-number").val();
+        let zhuangtai = $("#mysearch-zhuangtai option:selected").val();
+        let startTime = $("input[id=startTime]").val();
+        let endTime = $("input[id=endTime]").val();
+
+        let startTimeDate=Date.parse(startTime)
+        let endTimeDate=Date.parse(endTime)
+        // console.log(startTimeDate);
+        // console.log(endTimeDate);
+
+        
+        if (dingdan != "") {       //订单编号
+          for (let i = 0; i < userOrderData.length; i++) {
+            if (userOrderData[i].id != dingdan) {
+              userOrderData.splice(i, 1);
+              i--;
+            }
+          }
+        }
+        if (zhuangtai != 0) {    //订单状态  
+          for (let i = 0; i < userOrderData.length; i++) {
+            if (userOrderData[i].check != zhuangtai) {
+              userOrderData.splice(i, 1);
+              i--;
+            }
+          }
+        }
+        if (startTime != ''&&endTime != '') {    //下单时间   placeTime
+          for (let i = 0; i < userOrderData.length; i++) {
+            let time=Date.parse(userOrderData[i].placeTime)
+            if (time<startTimeDate||time>endTimeDate) {
+              userOrderData.splice(i, 1);
+              i--;
+            }
+          }
+        }
+
+        if (mingcheng != '') {    //商品名称
+          for (let i = 0; i < userWareData.length; i++) {
+            if (userWareData[i].name != mingcheng) {
+              userWareData.splice(i, 1);
+              i--;
+            }
+          }
+        }
+
+        if (people != '') {    //收件人
+          for (let i = 0; i < userData.length; i++) {
+            if (userData[i].name != people) {
+              userData.splice(i, 1);
+              i--;
+            }
+          }
+        }
+
+
+        $("#my-container-fluid").html("");
+        for (let i = 0; i < userOrderData.length; i++) {
+          for(let j = 0; j < userWareData.length; j++){
+            for (let k = 0; k < userData.length; k++) {
+                if (userOrderData[i].wid==userWareData[j].id&&userOrderData[i].uid==userData[k].id) {
+                 
+                    
+                          all++;
+                        if(userOrderData[i].check==-2){
+                          abc='已取消'
+                          yqx++
+                        }
+                        if(userOrderData[i].check==-1){
+                          abc='待付款'
+                          dfk++
+                        }
+                        if(userOrderData[i].check==1){
+                          abc='待出库'
+                          dck++
+                        }
+                        if(userOrderData[i].check==2){
+                          abc='已出库'
+                          yck++
+                        }
+                        if(userOrderData[i].check==3){
+                          abc='已完成'
+                          ywc++
+                        }
+
+                        let tupian=0
+                        if (userWareData[j].name=='榛子') {
+                          tupian='../img/商品/榛子.jpg'
+                        }
+                        if (userWareData[j].name=='无花果') {
+                          tupian='../img/商品/无花果.jpg'
+                        }
+                        if (userWareData[j].name=='杏仁') {
+                          tupian='../img/商品/杏仁.jpg'
+                        }
+                        if (userWareData[j].name=='桂圆') {
+                          tupian='../img/商品/桂圆.jpg'
+                        }
+                        if (userWareData[j].name=='澳洲牛肉') {
+                          tupian='../img/商品/澳洲牛肉.jpg'
+                        }
+                        $("#my-container-fluid").append(`
+                            <div class="row"  id="my-row-3">
+                              <div class="col-lg-offset-0 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                  <input type="checkbox" class='myinput'>
+                                  <span>订单号：</span>
+                                  <span>${userOrderData[i].id}</span>
+                              </div>
+                              <div class="col-lg-offset-0 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                  <span>下单时间</span>
+                                  <span>${userOrderData[i].placeTime}</span>
+                              </div>
+                              <div class="col-lg-offset-0 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                  <span>付款时间</span>
+                                  <span>${userOrderData[i].payTime}</span>
+                              </div>
+                            </div>
+
+                            <div class="row"  id="my-row-4">
+                              <div class="col-lg-offset-0 col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                                  <img id='myimg-2' src=${tupian} alt="">
+                              </div>
+                              <div class="col-lg-offset-0 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                  <p>${userWareData[j].name} </p>
+                              </div>
+                              <div class="col-lg-offset-0 col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                                  <p>X <span>${userWareData[j].price}
+                                  </span></p>
+                                  <p>X <span>${userOrderData[i].wareNum}</span></p>
+                              </div>
+                              <div class="col-lg-offset-0 col-lg-2 col-md-1 col-sm-1 col-xs-1">
+                                  <p>商品总价：¥${userWareData[j].price*userOrderData[i].wareNum}</p>
+                                  <p>优惠总额：¥5.00</p>
+                                  <p>运&emsp;&emsp;费：¥10.00</p>
+                                  <p>实际付款：¥${userWareData[j].price*userOrderData[i].wareNum-5+10}</p>
+                              </div>
+                              <div id='mydiv-col' class="col-lg-offset-0 col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                                  <img id='myimg' src='../img/老虎头像.jpg'></img>
+                                  <span id='myspan'>${userData[k].name}</span>
+                              </div>
+                              <div class="col-lg-offset-0 col-lg-2 col-md-1 col-sm-1 col-xs-1">
+                                  <p>申通快递</p>
+                                  <p>3212456666631</p>
+                              </div>
+                              <div class="col-lg-offset-0 col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                                  <p>待买家处理退款</p>
+                                  <p>处理退款</p>
+                              </div>
+                              <div class="col-lg-offset-0 col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                                  <p class='${j}'>${abc}</p>
+                              
+                              </div>
+                              <div class="col-lg-offset-0 col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                                  <p id='my-xiangqing' data-id=${userOrderData[i].id}  data-i='${i}' data-j='${j}' data-k='${k}'>订单详情</p>
+                              </div>
+                            </div>`
+                        )
+                        if (abc=='待出库') {
+                          $(`.${j}`).after(`<p id="my-state1" dck-id=${userOrderData[i].id}  dck-i="${i}" dck-j="${j}" dck-k="${k}"  class="my-state1 btn btn-info">出库</p>`)
+                        }
+
+                        $('#all').text(all)   
+                        $('#yqx').text(yqx)
+                        $('#dfk').text(dfk)
+                        $('#dck').text(dck)
+                        $('#yck').text(yck)
+                        $('#ywc').text(ywc)
+                    
+                  
+                    
+                   
+
+                    
+
+
+                }
+            }  
+           
+          }
+        }
+
+      });
+      
+     
+    
+        $('#chongzhi').click(function () {    //重置
+          $("#my-container-fluid").html("");
+  
+          $("#mysearch-dingdan").val('');
+          $("#mysearch-mingcheng").val('');
+          $("#mysearch-people").val('');
+          $("#mysearch-number").val('');
+          $("#mysearch-zhuangtai").val('0');
+          $("input[id=startTime]").val('');
+          $("input[id=endTime]").val('');
+
+          userOrderData=[...dataarr]
+          userWareData=[...WareData] 
+          userData=[...myuserData] 
+
+          showData(data1);
+        })
+
+
+        $('#allSelector').click(function(){     //所有选中
+          if( $('#allSelector').prop('checked')==true){
+              $('.myinput').prop('checked',true)
+          }else{
+            $('.myinput').prop('checked',false)
+          }
+          
+        })
+
+
+        $('#my-container-fluid').on('click','#my-xiangqing',function () {
+         let datai= $(this).attr('data-i')
+         let dataj= $(this).attr('data-j')
+         let datak= $(this).attr('data-k')
+         let dataId= $(this).attr('data-id')
+
+
+
+         localStorage.setItem('datai', JSON.stringify(datai))
+         localStorage.setItem('dataj', JSON.stringify(dataj))
+         localStorage.setItem('datak', JSON.stringify(datak))
+         localStorage.setItem('dataId', JSON.stringify(dataId))
+
+
+
+         localStorage.setItem('userData', JSON.stringify(userData))
+         localStorage.setItem('userWareData', JSON.stringify(userWareData))
+         localStorage.setItem('userOrderData', JSON.stringify(userOrderData))
+         
+         
+         console.log(datai,dataj,datak);
+         $('#content').load('./订单详情.html')
+        //  location.href='./订单详情.html'
+        })
+
+        
+
+        $('#my-container-fluid').on('click','#my-state1',function () {
+
+          let dcki= $(this).attr('dck-i')   
+          let dckj= $(this).attr('dck-j')
+          let dckk= $(this).attr('dck-k')
+          let dckId= $(this).attr('dck-id')
+
+          localStorage.setItem('dcki', JSON.stringify(dcki)) //订单表的下标
+          localStorage.setItem('dckj', JSON.stringify(dckj)) //商品表的下标
+          localStorage.setItem('dckk', JSON.stringify(dckk)) //用户表的下标
+          localStorage.setItem('dckId', JSON.stringify(dckId)) //用户表的下标
+
+          localStorage.setItem('userData', JSON.stringify(userData))  //用户表
+          localStorage.setItem('userWareData', JSON.stringify(userWareData)) //商品表
+          localStorage.setItem('userOrderData', JSON.stringify(userOrderData))//订单表
+          
+
+          /* 将localStorage 改成 sessionStor  传递数据 最好是放到一个最大的对象里面一起传递 */
+          
+          /* 当前订单ID */
+          // sessionStorage.setItem('order-ID',  )
+         
+         
+         console.log(dcki,dckj,dckk);
+         $('#content').load('./订单出库.html')
+        //  location.href='./订单出库.html' 
+      })
+
+       
+        
+    
+
+
+
+       
+    </script>
+  </body>
+</html>
+
+
+<!-- <div class="row"  id="my-row-3">
+  <div class="col-lg-offset-0 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+      <input type="checkbox">
+      <span>订单号：</span>
+      <span>${userOrderData[i].id}</span>
+  </div>
+  <div class="col-lg-offset-0 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+      <span>下单时间</span>
+      <span>${userOrderData[i].placeTime}</span>
+      <span>10:10:10</span>
+  </div>
+  <div class="col-lg-offset-0 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+      <span>付款时间</span>
+      <span>${userOrderData[i].payTime}</span>
+      <span>10:10:10</span>
+  </div>
+</div>
+
+<div class="row"  id="my-row-4">
+  <div class="col-lg-offset-0 col-lg-1 col-md-1 col-sm-1 col-xs-1">
+      <img src="" alt="">
+  </div>
+  <div class="col-lg-offset-0 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+
+      <p>${userWareData.forEach((item) => {
+       if (item.id == userOrderData[i].wid) {
+          return item.name
+        }
+        })}
+        </p>
+      <p>红色;3L</p>
+  </div>
+  <div class="col-lg-offset-0 col-lg-1 col-md-1 col-sm-1 col-xs-1">
+      <p>X <span>${userWareData.forEach((item) => {
+       if (item.id == userOrderData[i].wid) {
+          return item.price
+        }
+        })}
+       </span></p>
+      <p>X <span>${userOrderData[i].wareNum}</span></p>
+  </div>
+  <div class="col-lg-offset-0 col-lg-2 col-md-1 col-sm-1 col-xs-1">
+      <p>商品总价：¥${userWareData.forEach((item) => {
+       if (item.id == userOrderData[i].wid) {
+          return item.price
+        }
+        })*userOrderData[i].wareNum}</p>
+      <p>优惠总额：¥5.00</p>
+      <p>运&emsp;&emsp;费：¥10.00</p>
+      <p>实际付款：¥${userWareData.forEach((item) => {
+       if (item.id == userOrderData[i].wid) {
+          return item.price
+        }
+        })*userOrderData[i].wareNum-5+10}</p>
+  </div>
+  <div class="col-lg-offset-0 col-lg-1 col-md-1 col-sm-1 col-xs-1">
+      <img></img>
+      <span>${userData[0].name}</span>
+  </div>
+  <div class="col-lg-offset-0 col-lg-2 col-md-1 col-sm-1 col-xs-1">
+      <p>申通快递</p>
+      <p>3212456666631</p>
+  </div>
+  <div class="col-lg-offset-0 col-lg-1 col-md-1 col-sm-1 col-xs-1">
+      <p>待买家处理退款</p>
+      <p>处理退款</p>
+  </div>
+  <div class="col-lg-offset-0 col-lg-1 col-md-1 col-sm-1 col-xs-1">
+      <p>${userOrderData[i].check}</p>
+      <p>${userOrderData[i].check}</p>
+  </div>
+  <div class="col-lg-offset-0 col-lg-1 col-md-1 col-sm-1 col-xs-1">
+      <p id='my-xiangqing'>订单详情</p>
+  </div>
+</div> -->

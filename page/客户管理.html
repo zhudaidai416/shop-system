@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.min.css" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    a {
+      cursor: pointer;
+    }
+    .customerFrame {
+      width: 100%;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      background-color: #f0f2f5;
+    }
+    .customerSearchFrame {
+      width: calc(100% - 40px);
+      height: 90px;
+      border-radius: 5px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-sizing: content-box;
+      margin-bottom: 20px;
+      background-color: white;
+    }
+    .searchInput {
+      display: flex;
+      align-items: center;
+    }
+    .searchInput label {
+      margin: 0;
+    }
+    #searchB:hover {
+      color: white;
+      background-color: rgb(73, 125, 255);
+    }
+    .searchB {
+      color: white;
+      background-color: rgb(73, 125, 255);
+      margin-right: 20px;
+      /* padding: 0 20px; */
+    }
+    #resetB {
+      color: black;
+      background-color: white;
+    }
+    #exampleInputcustomer {
+      width: 200px;
+    }
+    .customerTableFrame {
+      width: 100%;
+      height: auto;
+      padding: 20px;
+      background-color: white;
+      display: flex;
+      flex-direction: column;
+      border-radius: 5px;
+    }
+    .customerTable {
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      margin: 0;
+      padding: 0;
+    }
+    .customerTableHeader {
+      height: 50px;
+      background-color: rgb(239, 239, 239);
+      border-radius: 5px 5px 0 0;
+      margin: 0;
+      padding: 0;
+    }
+    .customerTableHeader p {
+      margin: 0;
+      height: 100%;
+      line-height: 3.4;
+      font-size: 15px;
+      font-weight: bolder;
+    }
+    .customerTableBody {
+      margin: 0;
+      height: 100%;
+      line-height: 3.4;
+      font-size: 15px;
+      border-bottom: 1px solid rgb(238, 238, 238);
+    }
+    .customerTableBody p {
+      margin: 0;
+      color: rgb(104, 104, 104);
+    }
+    .customerTableFooter {
+      width: 100%;
+      height: 50px;
+      /* background-color: aquamarine; */
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 10px;
+      box-sizing: content-box;
+    }
+    .createcustomer:hover {
+      color: white;
+      background-color: rgb(73, 125, 255);
+    }
+    .createcustomer {
+      height: 34px;
+      margin: 0 5px;
+    }
+    .pageFrame {
+      width: auto;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      /* flex-direction: row-reverse; */
+    }
+    .pageFrame p {
+      width: 100px;
+      height: 20px;
+      margin: 0;
+    }
+    .pageFrame select {
+      width: 100px;
+      margin-left: 5px;
+    }
+    .btnShow {
+      width: 220px;
+      display: flex;
+    }
+  </style>
+  <body>
+    <div class="customerFrame">
+      <!-- 搜索 -->
+      <div class="customerSearchFrame">
+        <div class="searchInput">
+          <label for="exampleInputcustomer">客户名称：</label>
+          <input
+            type="text"
+            class="form-control"
+            id="exampleInputcustomer"
+            placeholder="请输入"
+          />
+        </div>
+        <div class="searchButton">
+          <a
+            id="searchB"
+            class="btn btn-default searchB"
+            href="#"
+            role="button"
+          >
+            查询
+          </a>
+
+          <a id="resetB" class="btn btn-default searchB" href="#" role="button">
+            重置
+          </a>
+        </div>
+      </div>
+      <!-- 表格 -->
+      <div class="customerTableFrame">
+        <div class="container-fluid customerTable">
+          <div class="row customerTableHeader">
+            <div class="col-md-4"><p>客户名称</p></div>
+            <div class="col-md-2"><p>客户等级</p></div>
+            <div class="col-md-4"><p>最近消费时间</p></div>
+            <div class="col-md-1"><p>消费金额</p></div>
+            <div class="col-md-1"><p>消费次数</p></div>
+          </div>
+        </div>
+        <div class="customerTableFooter">
+          <a id="toOrderPage" class="btn btn-default searchB" role="button">
+            查看订单
+          </a>
+          <div class="pageFrame">
+            <p>总共$$$个项目</p>
+            <a
+              id="prePage"
+              class="btn btn-default createcustomer"
+              role="button"
+            >
+              ←
+            </a>
+            <div class="btnShow"></div>
+            <a
+              id="nextPage"
+              class="btn btn-default createcustomer"
+              role="button"
+            >
+              →
+            </a>
+            <select id="pageControl" class="form-control">
+              <option>5条/页</option>
+              <option>10条/页</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="../lib/bootstrap/js/jquery-1.11.3.js"></script>
+  <script src="../lib/bootstrap/js/bootstrap.js"></script>
+  <script src="../main.js"></script>
+  <script>
+    // 用户表
+    let customerArr = getInfo('customer')
+    // 订单表
+    let order = getInfo('order')
+    // 商品表
+    let ware = getInfo('ware')
+    // 客户表
+    let cArr = []
+    // 搜索结果
+    let cSearchArr = []
+    // 页码
+    let page = 1
+    // 显示数 @每页
+    let pNum = 5
+
+    // 客户表 @构造函数
+    function Customer(cId, cImg, cName, cLevel, cTime, cCash, cCTimes) {
+      this.cId = cId
+      this.cImg = cImg
+      this.cName = cName
+      this.cLevel = cLevel
+      this.cTime = cTime
+      this.cCash = cCash
+      this.cCTimes = cCTimes
+    }
+
+    // 生成客户表 @声明
+    function createCustomerArr() {
+      for (let i = 0; i < order.length; i++) {
+        // 初始化客户
+        let customerObj = new Customer(
+          order[i].kid,
+          '',
+          '',
+          1,
+          '2000-1-1 0:0',
+          0,
+          0,
+        )
+        // 过滤重复的订单id
+        if (i > 0) {
+          if (order[i].id == order[i - 1].id) {
+            continue
+          }
+        }
+        // 计算客户消费
+        order.forEach((item, index) => {
+          if (order[i].id == order[index].id) {
+            for (let k = 0; k < ware.length; k++) {
+              if (ware[k].id == order[index].wid) {
+                customerObj.cCash += ware[k].price * order[index].wareNum
+              }
+            }
+          }
+        })
+        // 计算客户消费次数
+        for (let q = 0; q < order.length; q++) {
+          // 过滤重复的订单id
+          if (q > 0) {
+            if (order[q].id == order[q - 1].id) {
+              continue
+            }
+          }
+          if (order[q].kid == order[i].kid) {
+            customerObj.cCTimes++
+          }
+        }
+        // 计算客户最近下单时间
+        order.forEach((item, index) => {
+          if (item.kid == order[i].kid) {
+            customerObj.cTime =
+              item.placeTime.split('-')[0] > customerObj.cTime.split('-')[0] // 年
+                ? item.placeTime.split('-')[1] > customerObj.cTime.split('-')[1] // 月
+                  ? item.placeTime.split('-')[2] > // 日
+                    customerObj.cTime.split('-')[2]
+                    ? item.placeTime
+                    : customerObj.cTime
+                  : customerObj.cTime
+                : customerObj.cTime
+          }
+        })
+        // 获取客户基础信息
+        for (let j = 0; j < customerArr.length; j++) {
+          if (customerArr[j].id == order[i].kid) {
+            // 头像
+            customerObj.cImg = customerArr[j].img
+            // 昵称
+            customerObj.cName = customerArr[j].name
+            // 等级
+            customerObj.cLevel = customerArr[j].level
+          }
+        }
+        cArr.push(customerObj)
+      }
+    }
+
+    // 生成客户表 @调用
+    createCustomerArr()
+    // 打开页面首次渲染
+    showPage(cArr)
+
+    // 渲染函数
+    function showPage(arr) {
+      if ($('.customerTableBody')) {
+        $('.customerTableBody').remove()
+      }
+      let arrTarget = arr.slice((page - 1) * pNum, page * pNum)
+
+      // 渲染表格
+      arrTarget.forEach((item, index) => {
+        $('.customerTable').append(`
+          <div class="row customerTableBody">
+            <div class="col-md-4"><p>${item.cName}</p></div>
+            <div class="col-md-2"><p>${item.cLevel}</p></div>
+            <div class="col-md-4"><p>${item.cTime}</p></div>
+            <div class="col-md-1"><p>${item.cCash}</p></div>
+            <div class="col-md-1"><p>${item.cCTimes}</p></div>
+          </div>`)
+      })
+
+      // 渲染数据为空时，前往最后一页
+      if (!arrTarget.length) {
+        page = Math.ceil(arr.length / pNum)
+        showPage(arr)
+        // return @退出当前函数 避免栈溢出
+        return -1
+      }
+
+      // 渲染分页按钮
+      $('.btnShow').html(``)
+      pageCheck = 1
+      while (page > pageCheck + 4) {
+        pageCheck += 5
+      }
+      for (
+        let i = pageCheck;
+        i <= Math.ceil(arr.length / pNum) && i <= pageCheck + 4;
+        i++
+      ) {
+        $('.btnShow').append(`
+          <a class="btn btn-default createcustomer pageB" role="button" data-page="${i}">
+            ${i}
+          </a>`)
+      }
+
+      // 当前页高亮
+      for (let j = 0; j < $('.btnShow > a').length; j++) {
+        if ($('.btnShow > a').eq(j).html() == page) {
+          $('.btnShow > a').eq(j).css({
+            backgroundColor: 'rgb(73, 125, 255)',
+            color: 'white',
+          })
+        }
+      }
+
+      // 渲染提示信息
+      $('.pageFrame>p').html(`总共${arr.length}个项目`)
+    }
+
+    // 上一页
+    $('#prePage').on('click', () => {
+      if (page > 1) {
+        page--
+        cSearchArr.length ? showPage(cSearchArr) : showPage(cArr)
+      }
+    })
+
+    // 下一页
+    $('#nextPage').on('click', () => {
+      if (page < Math.ceil(cArr.length / 5)) {
+        page++
+        cSearchArr.length ? showPage(cSearchArr) : showPage(cArr)
+      }
+    })
+
+    // 切换分页 @事件委托
+    $('.btnShow').on('click', '.pageB', function () {
+      // console.log($(this).attr('data-page'))
+      page = Number($(this).attr('data-page'))
+      cSearchArr.length ? showPage(cSearchArr) : showPage(cArr)
+    })
+
+    // 修改分页 5条或10条一页
+    $('#pageControl').on('change', () => {
+      pNum = parseInt($('#pageControl').val())
+      cSearchArr.length ? showPage(cSearchArr) : showPage(cArr)
+    })
+
+    // 查询
+    $('#searchB').on('click', () => {
+      cSearchArr = []
+      cArr.forEach((item, index) => {
+        if (cArr[index].cName.indexOf($('#exampleInputcustomer').val()) != -1) {
+          cSearchArr.push(cArr[index])
+        }
+      })
+      page = 1
+      showPage(cSearchArr)
+    })
+
+    // 重置
+    $('#resetB').on('click', () => {
+      cSearchArr = []
+      page = 1
+      $('#exampleInputcustomer').val(``)
+      showPage(cArr)
+    })
+
+    // 查看订单
+    $('#toOrderPage').on('click', () => {
+      $('#content').load('./订单列表.html')
+    })
+  </script>
+</html>

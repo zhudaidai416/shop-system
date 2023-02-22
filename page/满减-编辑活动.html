@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet"href="../lib/bootstrap/css/bootstrap-datetimepicker.min.css"/>
+    <script src="../lib/bootstrap/js/jquery-1.11.3.js"></script>
+    <script src="../lib/bootstrap/js/bootstrap.js"></script>
+    <script src="../lib/bootstrap/js/moment-with-locales.js"></script>
+    <script src="../lib/bootstrap/js/bootstrap-datetimepicker.min.js"></script>
+    <style>
+       .clear::after{
+        content: "";
+        display: block;
+        clear: both;
+       }
+        /* html,body{
+            height: 100%;
+        } */
+        .host,.myTop,.myFirst,.mySecound{
+            width: 100%;
+            height: 100%;
+            /* border: 1px solid red; */
+            padding: 0;
+            margin: 0;
+        }
+        .mySecound>:first-child{
+            padding: 20px 0 0 20px;
+        }
+        /* .mySecound>:nth-child(2){
+            padding: 20px 0 0 20px;
+        } */
+        /* .mySecound>:first-child{
+            width: 100%;
+            height:8%;
+            color: rgb(187, 190, 194);
+            
+        } */
+        .mySecound>:nth-child(2){
+            font-size: 25px;
+        }
+    
+        .myThird{
+            width: 95%;
+            height: 100%;
+            background-color: rgba(145, 163, 182, 0.3);
+            overflow: hidden;
+        }
+        .myFour{
+            width: 96%;
+            height: 320px;
+            background-color: white;
+            padding-top: 10px;
+           margin: 20px 0 0 20px;
+        }
+    
+        .myFour>div,p,table{
+            padding:0 20px 0 20px    
+        }
+        .myFour>:first-child{
+            font-weight: bolder;
+            font-size: 17px;
+        }
+
+       .myFourB,.myFourC{
+        margin-bottom: 20px;
+       margin-top: 20px;
+       }
+       .myFourB>input{
+       margin-left: 20px;
+       margin-top: -5px;
+       }
+       .myFourB{
+        height: 40px;
+        display: flex;
+       align-items: center;
+        
+       }
+       .myFive{
+        width: 96%;
+            height: 320px;
+            background-color: white;
+            padding: 20px;
+           margin: 20px 0 0 20px;
+       }
+       .myFive>p{
+        font-weight: bolder;
+            font-size: 17px;
+            padding: 0;
+       }
+       .myFiveA{
+        /* width: 53%; */
+        height: 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        /* align-items: center; */
+        margin-bottom: 10px;
+       
+       }
+
+       .myFiveB{
+        /* width:  50%;; */
+        height: 40px;
+        margin-top:20px ;
+        display: flex;
+        margin-left: 5px;
+       }
+       .myFiveB>p{
+        width: 28px;
+        padding: 0;
+        text-align: center;
+        line-height: 36px;
+       }
+       .top-input{
+            width: 20%;
+            display: inline;
+        }
+       .myInput{
+        /* width:674px; */
+       }
+       #myTime{
+        width: 75%;
+      float: left;
+       }
+       .container{
+        padding: 0;
+       }
+       .line{
+        width: 5px;
+       }
+       .font{
+        width: 100px;
+        margin-top:10px ;
+        padding: 0;
+       }
+       .myFiveAA{
+        width: 360px;
+        background-color: gainsboro;
+        height: auto;
+        margin-left: 60px;
+       }
+       .myFiveAA select{
+        width: 120px;
+       }
+       .myFiveAA input{
+        width: 120px;
+       }
+       #youhui{
+        width: 90px;
+        line-height: 40px;
+        border: 1px dashed gainsboro;
+        background-color: white;
+        text-align: center;
+        line-height: 40px;
+        margin: 20px 0 20px 20px;
+        border-radius: 5px;
+       }
+       .mySix{
+        width: 100%;
+        height: 80px;
+        background-color: white;
+        margin-top: 30px;
+        position: relative;
+       }
+       #myChuang{
+        width: 100px;
+        height: 40px;
+        background-color: blue;
+        color: white;
+       }
+       #myQu{
+        width: 80px;
+        height: 40px;
+       }
+       #myAn{
+      position: absolute;
+      bottom: 0;
+      right: 0;
+       }
+       .xingxing{
+        color: red;
+       }
+       #shuRu{
+        width: 25%;
+       }
+       .topL{
+        display: flex;
+        align-items: center;
+        /* justify-content: center; */
+       }
+       .topL>label{
+        margin-top: 10px;
+       }
+       </style>
+</head>
+<body>
+    <section class="container-fluid host">
+        <div class="row myTop">
+            <div class="col-lg-12 myFirst">
+                <div class="mySecound">
+                    <p>
+                        <span>营销中心</span>
+                        <span>/</span>
+                        <span>满减</span>
+                        <span>/</span>
+                        <span>编辑活动</span>
+                    </p>
+                    <p>编辑满减活动</p>
+                    <div class="myThird clear">
+                        <div class="myFour ">
+                                <p>确认订单信息</p>
+                                <hr/>
+                            <div class="myFourA topL">
+                                <label><span class="xingxing">*</span id='myMing'>活动名称:</label>
+                                    <!-- <select id="shuRu" class="form-control">
+                                        <option value="-1">请选择</option>
+                                        <option value="0" id="shuRuA"></option>
+                                        <option value="1" id="shuRuB"></option>
+                                        <option value="2" id="shuRuC"></option>
+                                    </select> -->
+                                    <input type="text" id="shuRu"class="form-control ">
+                            </div>
+                            <div class="myFourB">
+                                <span >可用商品：</span>
+                                 <input type="radio" name="all" id="allA" value="0"  ><label for="allA">全部可用商品
+                               </label>
+                                 <input type="radio" name="all" id="allB" value="1"><label for="allB"> 指定商品可用 
+                                </label>
+                                 <input type="radio" name="all" id="allC" value="2"><label for="allC">指定商品不可用 
+                                </label> 
+                                
+                            </div>
+                            <div class="row">
+                                
+                                <div class="container" id="myTime">
+                                    <div class='col-lg-2'>
+                                        <p class='font'><span class="xingxing">*</span>活动有效期：</p>
+                                    </div>
+                                    <div class='col-lg-4'>
+                                       <div class="form-group">
+                                          <div class='input-group date myInput' id='datetimepicker6'>
+                                             <input id="myStart" type='text' class="form-control " />
+                                             <span class="input-group-addon">
+                                             <span class="glyphicon glyphicon-calendar"></span>
+                                             </span>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class='col-lg-1'>
+                                        <span class="line"><hr/></span>
+                                    </div>
+                                    <div class='col-lg-4'>
+                                       <div class="form-group">
+                                          <div class='input-group date myInput' id='datetimepicker7'>
+                                             <input id="myEnd" type='text' class="form-control " />
+                                             <span class="input-group-addon">
+                                             <span class="glyphicon glyphicon-calendar"></span>
+                                             </span>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                            </div>
+                           
+                            <div class=" myFoureE">
+
+                        </div>
+                            
+                        </div>
+                        <div class="myFive">
+                            <p>优惠设置</p>
+                            <hr/>
+                            <div class="myFiveA">
+                                <div class="myFourB">
+                                    <span class="xingxing">*</span> <span >优惠内容：</span>
+                                   <input type="radio" name="allA" id="alld"> <label for="alld">减免</label>
+                                    <input type="radio" name="allA" id="alle"><label for="alle"> 打折</label>
+                                    
+                                </div>
+                            </div>
+                            <div  class="myFiveA myFiveAA">
+                                <div class="myFiveB">
+                                     <p>购满</p>
+                                    <!-- <select id="stuGrade1" class="form-control">
+                                    <option value="0">0</option>
+                                    <option value="1">30</option>
+                                    <option value="2">59</option> -->
+                                    <input id="stuGrade1" type="text" placeholder="请输入"class="form-control">
+                                </select>
+                                <p>减免</p>
+                                <input id="jianMian" type="text" placeholder="请输入"class="form-control">
+                                <p>元</p>
+                                </div>
+                               
+                                <div id="youhui">添加优惠</div>
+                            </div>
+                        </div>
+                        <div class="mySix">
+                            <div id="myAn"> 
+                                <button id="myQu" class="btn btn-default ">取消</button>
+                                <button id="myChuang" class="btn btn-default ">保存</button>
+                            </div>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script type="text/javascript">
+        $(function() {
+            $('#datetimepicker6').datetimepicker({
+                format: 'YYYY-MM-DD',
+                locale: moment.locale('zh-cn')
+            });
+            $('#datetimepicker7').datetimepicker({
+                format: 'YYYY-MM-DD ',
+                locale: moment.locale('zh-cn')
+            }); });
+    </script>
+    <script>
+            let myDataNameA=sessionStorage.getItem('myDataName')
+           let myDatadFactorA= sessionStorage.getItem('myDatadFactor')
+           let myDatadCashA=sessionStorage.getItem('myDatadCash')
+           let myDatadStartA=sessionStorage.getItem('myDatadStart')
+           let myDatadEndA=sessionStorage.getItem('myDatadEnd')
+            $('input[id=shuRu]').val(myDataNameA)
+            $('input[id=myStart]').val(myDatadStartA)
+            $('input[id=myEnd]').val(myDatadEndA)
+            $('input[id=stuGrade1]').val(myDatadFactorA)
+            $('input[id=jianMian]').val(myDatadCashA)
+
+           
+       $('#myQu').click(function(){
+        $('#content').load('./营销中心-满减.html')
+       })
+       $('#myChuang').click(function(){
+            let myDataNameB= $('input[id=shuRu]').val()
+           let myDatadFactorB=$('input[id=myStart]').val()
+           let myDatadCashB= $('input[id=myEnd]').val()
+           let myDatadStartB=$('input[id=stuGrade1]').val()
+           let myDatadEndB= $('input[id=jianMian]').val()
+        sessionStorage.setItem('myDataNameB',myDataNameB)
+         sessionStorage.setItem('myDatadFactorB',myDatadFactorB)
+         sessionStorage.setItem('myDatadCashB',myDatadCashB)
+         sessionStorage.setItem('myDatadStartB',myDatadStartB)
+         sessionStorage.setItem('myDatadEndB',myDatadEndB)
+        $('#content').load('./营销中心-满减.html')
+       })
+    </script>
+</body>
+</html>
+
+    

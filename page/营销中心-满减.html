@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet"href="../lib/bootstrap/css/bootstrap-datetimepicker.min.css"/>
+    <script src="../lib/bootstrap/js/jquery-1.11.3.js"></script>
+    <script src="../lib/bootstrap/js/bootstrap.js"></script>
+    <script src="../lib/bootstrap/js/moment-with-locales.js"></script>
+    <script src="../lib/bootstrap/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="../main.js"></script>
+    
+
+    <style>
+       html{
+        min-width: 800px;
+        
+       }
+        html,body,#host {
+            height: 100%;
+        }
+        #host{
+            padding: 0;
+            height: 100%;
+            width: 100%;
+           display: flex;
+           flex-direction: column;
+           align-items: center;
+           background-color: rgba(127, 121, 121, 0.1);
+        }
+        #top{
+            background-color: white;
+            width: 100%;
+            height:150px;
+            padding:  0 ;
+            margin-bottom:  20px;
+        }
+        #button{
+            background-color: white;
+            width: 100%;
+            height: 400px;;
+            padding: 20px 0 ;
+            margin: 0;
+            text-align: center;
+        }
+
+        .top-input{
+            width: 40%;
+            display: inline;
+        }
+        .top-right{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+            margin: 0;
+ 
+        }
+      .font{
+      margin-left: 50px   ;
+      }
+        #top-top{
+            height: 60%;
+            width: 100%;
+          text-align: center;
+            display: flex;
+            align-items: center;
+            padding: 0 30px;
+        }
+        .topR{
+            padding: 0;
+        }
+       .line{
+        width: 2%;
+       }
+       .topL{
+     display: flex;
+     justify-content: flex-start;
+     align-items: center;
+     padding: 0;
+       }
+       #top-bot{
+        width:100% ;
+        height: 40%;
+        padding: 0 30px;
+       }
+       .search{
+        color: aliceblue;
+        background-color: blue;
+       }
+       .set{
+      margin:0 20px;
+       }
+       thead{
+        background-color: rgba(0,0, 0, 0.1);
+        
+       }
+     .myBiao th{
+        width: 14%;
+       text-align: center;
+     }
+     .myBiao{
+        width: 100%;
+      
+     }
+     .myJ{
+        height: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+       float: right;
+     }
+     .myT{
+         width: 128px;
+       margin-left: 20px;
+     }
+     
+     table{
+        border-collapse:inherit;
+     }
+   
+    #myTop{
+        display: inline-block;
+        width: 36px;
+     cursor: pointer;
+    }
+    #yeMa{
+        width:100%;
+        height: 60px;
+        display: flex;
+        justify-content: end;
+        align-items: center;
+       
+    }
+    .myYema{
+        display: inline-block;
+        width: 35px;
+        height: 34px;
+        border: 1px solid rgb(174, 170, 170);
+        border-radius: 5px;
+        line-height: 34px;
+    }
+    .active{
+        background-color: blueviolet;
+    }
+    #myBtu{
+        margin-top:18px ;
+    }
+    .chuang{
+      width: 100px;
+      margin: 10px 0 20px 0;
+      background-color: brown;
+      color: white;
+      float: left;
+    }
+    #chao{
+      width: 104%;
+      height: 80px;
+      background-color: white;
+      margin: -20px 0 0 -20px;
+      padding: 0;
+    }
+    #zhong{
+      width: 100%;
+      height: 20px;
+      background-color: #f0f2f5;
+      
+      margin: 0;
+    }
+    #chaoA{
+      padding: 20px;
+    }
+  #chaoA>p{
+    color: #f0f2f5;
+
+  }
+  #chaoA>div{
+    font-size: 25px;
+  }
+  #wuYu{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .quan{
+    width: 5px;
+    height: 5px;
+    background-color: blue;
+    border-radius: 5px;
+    display: inline-block;
+    margin-bottom: 3px;
+  }
+  .quanA{
+    width: 5px;
+    height: 5px;
+    background-color: rgb(255, 0, 0);
+    border-radius: 5px;
+    display: inline-block;
+    margin-bottom: 3px;
+  }
+  .tuiguan{
+    width: 40px;
+    height: 20px;
+    border-radius: 5px;
+    background-color: rgba(44, 203, 206, 0.715);
+    border: 1px solid white;
+    text-align: center;
+    line-height: 20px;
+  }
+  .tuiguanA{
+    width: 40px;
+    height: 20px;
+    border-radius: 5px;
+    background-color: rgb(74, 179, 205);
+    border: 1px solid white;
+    text-align: center;
+    line-height: 20px;
+  }
+  .tuiguanB{
+    width: 40px;
+    height: 20px;
+    border-radius: 5px;
+    background-color: rgb(74, 179, 205);
+    border: 1px solid white;
+    text-align: center;
+    line-height: 20px;
+  }
+    </style>
+  </head>
+  <body>
+     <!--创建删除模态框  -->
+     <div class="modal fade  myModalA" id="myModal" tabindex="-1" >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">删除数据</h4>
+          </div>
+          <div class="modal-body">
+            确定删除吗？
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            <button type="button" id="queding" class="btn btn-primary">确定</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div  class="row " id="chao">
+      <div id="chaoA">
+         <p>
+        <span>营销中心</span>
+        <span>/</span>
+        <span>减满</span>
+      </p>
+      <div>满减</div>
+      </div>
+     
+    </div>
+    <div  class="row "id="zhong">
+    </div>
+  <section class="container-fluid" id="host">
+   
+    <div class="row" id="top">
+        <div id="top-top">
+        <div class='col-lg-5 topL'>
+            <span>活动名称：</span>
+            <input id="shuRu" class="form-control top-input" type="text" placeholder="请输入" >
+        </div>
+        <div class=' col-lg-2 font'></div>
+        <div class=' col-lg-3 topR'>
+    </div>
+        <div class='col-lg-3 topR'>
+  </div>
+        </div>
+        <div id="top-bot"> 
+        <button id='myCha'class="btn btn-default  search">查询</button>
+        <button class="btn btn-default " id="set">重置</button>
+        </div>
+    </div>
+    <div class="row" id="button">
+        <div class='col-lg-12'>
+            <table class="table table-hover">
+            <thead>
+                <tr class="myBiao">
+                    <th>活动名称</th>
+                    <th>优惠内容</th>
+                   <th>
+                    <div class="myT"><span>状态</span> <div class="myJ">
+                    </div></div>
+                   </th>
+                    <th >
+                        <div class="myT"><span>活动有效期</span> <div class="myJ">
+                    </div></div>
+                    </th>
+                    <th >
+                        <div class="myT"><span>操作</span> <div class="myJ">
+                    </div></div >
+                    </th>
+                    <th>
+                        <div class="myT"><span></span> <div class="myJ">
+                        </div></div>
+                       </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody class="section">
+               
+            </tbody>
+            </table>
+            <div id="wuYu">
+
+           
+             <button class="btn btn-default chuang">创建活动</button>
+            <div id="yeMa"> 
+              
+               
+                  <span id="myXiang">总共有0个项目</span>
+                  <button id="pre" class="btn btn-default  set glyphicon glyphicon-menu-left"></button>
+                   <div class="yeMaA"></div>
+                   <button id="next" class="btn btn-default  set glyphicon glyphicon-menu-right"></button>
+                      <div class="form-group" id="myBtu">
+                        <select id="stuGrade1" class="form-control">
+                            <option value="0">3条/页</option>
+                            <option value="1">5条/页</option>
+                            <option value="2">10条/页</option>
+                        </select>
+                      </div>
+             </div>
+               
+            </div>
+            
+        </div>
+    </div>
+ </section>
+<script>
+        //获得数据  
+
+
+    //  //从会话中得到订单的值
+     let myOrder=sessionStorage.getItem('order') 
+    let myOrderData=JSON.parse(myOrder)
+
+    // //从会话中得到银行卡的值
+    let myCard=sessionStorage.getItem('discount') 
+    let myCardData=JSON.parse( myCard)
+
+     
+    let myUserA=[...myCardData]
+    let dangqianye=1
+    let maxPage
+    let userShu
+    let startTimeA
+    let endTimeA
+    let delId
+    let myData
+    let  myDataID
+    search()
+    //点击查询，进行筛选
+    $('#myCha').click(function(){
+        search()
+    })
+    //筛选客户名称,如果名字相等，则在表格中显示
+    function search(){
+             userShu=$('#shuRu').val()
+              myUserA=[...myCardData]
+           
+            //客户名称筛选
+            if(userShu!=('')){
+                for(let i=0;i<myUserA.length;i++){    
+                 if(userShu!=myUserA[i].name){
+                    myUserA.splice(i,1)
+                    i--
+                    
+            }
+            }
+            }
+
+            myPage(myUserA)    
+           showData(myUserA,1)
+          //显示项目
+          if(myUserA==[]){
+            $('#myXiang').text(`总共有0个项目`)  
+          }else{
+             $('#myXiang').text(`总共有${myUserA.length}个项目`)   
+          }
+        }
+       
+        //重置
+        $('#set').click(function(){
+        $('input[id=shuRu]').val('')
+        myUserA=[]
+        startTimeA=$('input[id=startTime]').val('')
+         endTimeA=$('input[id=endTime]').val('')
+        search()
+    })
+        //截取数据
+    function showData(data,pageNum){
+        let qishi=(pageNum-1)*3
+        let dangqianyeDate=data.slice(qishi,qishi+3)
+        show(dangqianyeDate)
+         $('.myYema').eq(pageNum-1).addClass('active').siblings().removeClass('active')
+         dangqianye=pageNum
+    }
+    //渲染数据
+    function show(data){
+        $('.section').html('')
+                for(let i=0;i<data.length;i++){
+
+                  if(data[i].dCash==-1&&data[i].dFactor==-1){
+                    $('.section').append(`<tr>
+                    <td>${data[i].name}</td>
+                    <td>  无减免</td>
+                    <td><span class='quan'></span>已失效</td>
+                    <td>${data[i].dStart}~${data[i].dEnd}</td>
+                    <td><button class='tuiguan'>查看</button></td>
+                    <td><button class='tuiguanA' id=${JSON.stringify(data[i])}>编辑</button></td>
+                    <td><button class="tuiguanB" id='${data[i].id }' data-toggle="modal" data-target="#myModal">删除</button></td>
+                    </tr>`)
+                } else{
+                   $('.section').append(`<tr>
+                    <td>${data[i].name}</td>
+                    <td>满${data[i].dFactor}减${data[i].dCash}元</td>
+                    <td><span class='quanA'></span>生效中</td>
+                    <td>${data[i].dStart}~${data[i].dEnd}</td>
+                    <td><button class='tuiguan'>查看</button></td>
+                    <td><button class='tuiguanA' id=${JSON.stringify(data[i])}>编辑</button></td>
+                    <td><button class="tuiguanB" id='${data[i].id }' data-toggle="modal" data-target="#myModal">删除</button></td>
+                    </tr>`)
+                } 
+                }
+                  
+               
+              
+        }
+      
+    // }
+   
+        //把数据导入，找到最大页码,并渲染出在每一个页码
+    function myPage(data){
+        maxPage= Math.ceil(data.length/3)
+        $('.yeMaA').html('')
+        for( let i=1;i<=maxPage;i++){
+            $('.yeMaA').append(`<span class="myYema">${i}</span>`)
+        }
+    }
+    //单击页码，显示当前页 这里需要委托事件才能点击到页码，传的值是点击那个页面的文本值
+    $('.yeMaA').on('click','.myYema',function(){
+       
+        showData(myUserA,parseInt($(this).text()) )
+    })
+   // 上一页
+        $('#pre').click(function(){
+            if(dangqianye>1){
+                dangqianye=dangqianye-1
+               
+            }
+            showData(myUserA,dangqianye )
+        })
+        //下一页
+        $('#next').click(function(){
+            if(dangqianye<maxPage){       
+                dangqianye=dangqianye+1
+            }
+            showData(myUserA,dangqianye )
+        })
+        //跳转页面
+        $(".chuang").click(function(){
+          showXiugai()
+          $('#content').load('./满减-创建活动.html')
+        })
+        $(".tuiguan").click(function(){
+          $('#content').load('./满减-查看活动.html')
+        })
+        $(".tuiguanA").click(function(){
+          $('#content').load('./满减-编辑活动.html')
+        })
+         //删除数据
+        $('.tuiguanB').click(function(){
+         delId=this.id
+      
+        })
+        $("#queding").click(function(){
+          for(let i=0;i<myCardData.length;i++){
+            if(myCardData[i].id==delId){
+              myCardData.splice(i,1)
+            }
+          }
+          search(myCardData,dangqianye)
+          $("#myModal").modal('hide')
+          $('.modal-backdrop').remove()
+          $('body').removeClass('model-open')
+        })
+        //修改数据
+         $('.tuiguanA').click(function(){
+          myData=this.id
+          let myDataA=JSON.parse(myData)
+          myDataID=myDataA.id
+           let myDataName=myDataA.name
+           let myDatadFactor=myDataA.dFactor
+           let myDatadCash=myDataA.dCash
+           let myDatadStart=myDataA.dStart
+           let myDatadEnd=myDataA.dEnd
+         sessionStorage.setItem('myDataName',myDataName)
+         sessionStorage.setItem('myDatadFactor',myDatadFactor)
+         sessionStorage.setItem('myDatadCash',myDatadCash)
+         sessionStorage.setItem('myDatadStart',myDatadStart)
+         sessionStorage.setItem('myDatadEnd',myDatadEnd)
+         showXiugai(myCardData)//点击修改时值给了，但是到点击页面，页面还是原来的值
+         })
+         function showXiugai(data){
+          let myDataNameB=sessionStorage.getItem('myDataNameB')
+           let myDatadFactorB= sessionStorage.getItem('myDatadFactorB')
+           let myDatadCashB=sessionStorage.getItem('myDatadCashB')
+           let myDatadStartB=sessionStorage.getItem('myDatadStartB')
+           let myDatadEndB=sessionStorage.getItem('myDatadEndB')
+           
+          for(let i=0;i<data.length;i++){
+            if(data[i].id==myDataID){
+              data[i].name=myDataNameB
+              data[i].dStart=myDatadStartB
+              data[i].dEnd=myDatadEndB
+              data[i].dFactor=myDatadFactorB
+              data[i].dCash=myDatadCashB
+            }
+          }
+          myPage(data)    
+           showData(data,dangqianye)
+         }
+       
+       //添加满减
+       function showXiugai(){
+          let myDataNameC=sessionStorage.getItem('myDataNameC')
+           let myDatadFactorC= sessionStorage.getItem('myDatadFactorC')
+           let myDatadCashC=sessionStorage.getItem('myDatadCashC')
+           let myDatadStartC=sessionStorage.getItem('myDatadStartC')
+           let myDatadEndC=sessionStorage.getItem('myDatadEndC')
+          console.log(myDataNameC)
+           let arr4={ id: 4,
+                      uid: 1,
+                      name: myDataNameC,
+                      ware: 1,
+                      dStart: myDatadStartC,
+                      dEnd: myDatadEndC,
+                      check: 1,
+                      discount: 9,
+                      dFactor: myDatadFactorC,
+                      dCash: myDatadCashC,}
+               myCardData.push(arr4)
+
+         }
+</script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 引入bootstrap插件 -->
+    <link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.min.css">
+    <script src="../lib/bootstrap/js/jquery-1.11.3.js"></script>
+    <script src="../lib/bootstrap/js/bootstrap.min.js"></script>
+</head>
+
+<style>
+    .main-3 > .fa-3{
+        height: 700px;
+        /* padding-bottom: 50px; */
+        /* border: 1px solid red; */
+    }
+    .son3-left{
+        height: auto;
+        /* height: 100%; */
+        /* background-color: pink; */
+    }
+    .son3-right{
+        padding-bottom: 20px;
+        /* height: 100%; */
+        /* background-color: hotpink; */
+    }
+    .son3-left .img-logo{
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+    }
+    .son3-left .img-logo>img{
+        width: 150px;
+    }
+    .son3-left > p{
+        margin-top: 10px;
+    }
+    .son3-left>.map>img{
+        width: 200px;
+        height: 156px;
+    }
+    .son3-left button{
+        width: 100px;
+        margin: 15px 0;
+    }
+    .son3-right > img{
+        height: 690px;
+    }
+</style>
+<body>
+    <div class="container main-3">
+        <div class="row fa-3">
+            <div class="col-sm-5 son3-left">
+                <h2>店铺设计</h2>
+                <p>店铺LOGO</p>
+                <div class="img-logo"><img src="../img/老虎头像.jpg" class="img-circle"></div>
+                <button id="btn-change" onclick="upload.click()">上传图片</button>
+                <input multiple type="file" accept="image/*" name="upload" id="upload" style="display: none;" />
+                <p>支持扩展名：.png jpg jpeg;图片尺寸建议300px*300px;大小不大于500K</p>
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label>字体颜色：</label>
+                        <label class="white"><input type="radio" name="color" id="white" value="option1"> 白色</label>
+                        <label class="black"><input type="radio" name="color" id="black" value="option2" checked="checked"> 黑色</label>
+                    </div>
+                </form>
+                <h5>店铺主图</h5>
+                <div class="map"><img src="../img/地图.jpg" alt="店铺主图"></div>
+                <button>跟换图片</button>
+                <p>支持扩展名:.png .jpg .jpeg;图片尺寸建议750px*240px;大小不大于1M</p>
+                <div class="checkbox">
+                    <label><input type="checkbox" value="">开启主题遮罩</label>
+                </div>
+            </div>
+            <div class="col-sm-4 son3-right">
+                <img src="../img/手机.png" alt="">
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        /* 更改店铺logo */
+        /* 的那个input发生改变时 */
+        $('#upload').change(function(){
+            //获取文件文件节点
+            let fileData = this.files[0]
+            //实例化FileReader对象
+            let fileObj = new FileReader()
+            //转换成base64字符串 并将结果存入 fileObj.result
+            fileObj.readAsDataURL(fileData)
+            //读取操作完成时触发onload
+            fileObj.onload = function(e){
+                /* $('.img-logo').append(`<img src='${e.target.result}' class="img-circle" />`) */
+                $('.img-logo').html('').css({backgroundImage:`url(${e.target.result})`})
+                let user1 = JSON.parse(sessionStorage.getItem('user'))
+                user1.sImg = e.target.result
+                sessionStorage.setItem('user',JSON.stringify(user1))
+            }
+            
+        })
+    </script>
+    
+</body>
+</html>

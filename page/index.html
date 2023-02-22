@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index</title>
+    <!-- 字体icon_font -->
+    <link rel="stylesheet" href="../iconfont/font-index/iconfont.css">
+    <script src="../iconfont/font-index/iconfont.js"></script>
+    <!-- bootstrap引入 -->
+    <link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.min.css">
+    <script src="../lib/bootstrap/js/jquery-1.11.3.js"></script>
+    <script src="../lib/bootstrap/js/bootstrap.min.js"></script>
+    <!-- 外部css样式 -->
+    <link rel="stylesheet" href="../css/index.css">
+</head>
+<body>
+    <div class="container-fluid main">
+        <div class="row all">
+            <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4 main-left"><!-- 左边 -->
+                <div class="row left-top">
+                    <img src="../img/男头像.png" class="img-rounded">
+                    <p>扬帆电商平台</p>
+                </div>
+                <ul id="nav">  
+                    <li>
+                        <span class="iconfont shop-index">
+                            <span>&#xe751; 店铺首页</span>
+                            <span class="boult one-font">&#xe601;</span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="iconfont">
+                            <span>&#xe600; 店铺管理</span>
+                            <span class="boult">&#xe601;</span>
+                        </span>
+                        <ul>
+                            <li>基本设置</li>
+                            <li>店铺认证</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span class="iconfont">
+                            <span>&#xe602; 商品管理</span>
+                            <span class="boult">&#xe601;</span>
+                        </span>
+                        <ul>
+                            <li>发布商品</li>
+                            <li>在售商品</li>
+                            <li>商品仓库</li>
+                            <li>商品分类</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span class="iconfont">
+                            <span>&#xe619; 订单管理</span>
+                            <span class="boult">&#xe601;</span>
+                        </span>
+                        <ul>
+                            <li>订单列表</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span class="iconfont">
+                            <span>&#xe612; 客服管理</span>
+                            <span class="boult">&#xe601;</span>
+                        </span>
+                        <ul>
+                            <li>客服列表</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span class="iconfont">
+                            <span>&#xe60a; 营销管理</span>
+                            <span class="boult">&#xe601;</span>
+                        </span>
+                        <ul>
+                            <li>营销中心</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span class="iconfont">
+                            <span>&#xe661; 资金管理</span>
+                            <span class="boult">&#xe601;</span>
+                        </span>
+                        <ul>
+                            <li>提现申请</li>
+                            <li>账单明细</li>
+                        </ul>
+                    </li>
+                </ul>
+                
+            </div>
+            <!-- 右边 -->
+            <div class="col-lg-10 col-md-10 col-sm-9 col-xs-8 col-xs-offset-4 col-sm-offset-3 col-md-offset-2 col-lg-offset-2 main-right"><!-- 右边 -->
+                <div class="row right-top iconfont">
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">&#xe622;</div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xs-offset-7 col-sm-offset-7 col-md-offset-7 col-lg-offset-7">&#xe651;</div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">&#xe8c0;</div>
+                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-2" id="log_out_fa">
+                        <img src="../img/头像 女孩.png" class="img-rounded">
+                        <span>momo.zxy</span>
+                        <div id="log_out">退出登录</div>
+                    </div>
+                </div>
+
+                <!-- 隐藏块 -->
+                <div class="row hide-block">
+                    <p><span>xxxx</span>/ <span>xxxx</span>/ <span>xxxx</span> </p>
+                    <h3><b>查看满减活动</b></h3>
+                </div>
+
+                <div class="row right-center" id='content'></div><!-- 公共显示区域 -->
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/index-data-src.js"></script>
+    <script src="../js/index.js"></script>
+    
+</body>
+</html>

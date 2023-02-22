@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.min.css">
+    <script src="../lib/bootstrap/js/jquery-1.11.3.js"></script>
+    <script src="../lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../main.js"></script>
+    <style>
+        html {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+
+            width: 100%;
+            height: 100%;
+            background-color: #f0f2f5
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .mydiv {
+            width: 100%;
+            height: 100%;
+            background-color: #f0f2f5;
+            /* min-width: 1200px; */
+            /* background-color: aqua; */
+        }
+
+        .mydiv6 {
+            background-color: #f0f2f5
+        }
+
+        .mydiv>div {
+            margin-bottom: 25px;
+        }
+
+        .mydiv1 {
+            background-color: #ffffff;
+            width: 100%;
+            height: 180px;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 25px;
+        }
+
+        .mydiv2 {
+            background-color: #ffffff;
+            width: 100%;
+            height: 180px;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .mydiv2-1 {
+            width: 100%;
+            height: 60px;
+            display: flex;
+            /* background-color: #1890ff; */
+            /* border: 1px solid red; */
+        }
+
+        .mydiv2 h4 {
+            border-bottom: 1px solid gray;
+            width: 100%;
+            height: 40px;
+            padding-left: 10px;
+            line-height: 40px;
+        }
+
+        .mydiv2-2 {
+            width: 100%;
+            height: 100%;
+            /* background-color: aquamarine; */
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .mydiv2-3 {
+            width: 150px;
+            height: 100%;
+            /* background-color: aqua; */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mydiv2-4 {
+            font-size: 25px;
+            color: #409eff;
+        }
+
+        .mydiv2-4-1 {
+            font-size: 25px;
+            color: red;
+        }
+
+        .mydiv3 {
+            background-color: #ffffff;
+            width: 100%;
+            height: 180px;
+        }
+
+        .mydiv4 {
+            background-color: #f0f2f5;
+            height: 380px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+
+        }
+
+        .mydiv4 h4 {
+            border-bottom: 1px solid gray;
+            height: 40px;
+            padding-left: 10px;
+            line-height: 40px;
+        }
+
+        .mydiv4-1 {
+            height: 100%;
+            width: 30%;
+            background-color: #ffffff;
+            /* display: flex; */
+        }
+
+        .bangding {
+            margin-top: 120px;
+            /* height: 100% ; */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mydiv4-1 button {
+            width: 110px;
+            height: 40px;
+            background-color: #1890ff;
+            border-radius: 5px;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .mydiv4-2 {
+            height: 100%;
+            width: 68%;
+            background-color: #ffffff;
+        }
+
+        .mydiv4-wenzi {
+            width: 300px;
+            height: 50px;
+        }
+
+        .mydiv5 {
+            background-color: #ffffff;
+            width: 100%;
+            height: 120px;
+
+        }
+
+        .mydiv5-1 {
+            width: 100%;
+            height: 60px;
+            /* border: 1px solid blue; */
+        }
+
+        .mydiv5-2 {
+            width: 100%;
+            height: 60px;
+            display: flex;
+            /* border: 1px solid red; */
+        }
+
+        .mydiv5 h4 {
+            border-bottom: 1px solid gray;
+            height: 40px;
+            padding-left: 10px;
+            line-height: 40px;
+        }
+
+        .mydiv5 h5 {
+            /* border-bottom: 1px solid gray; */
+            height: 40px;
+            padding-left: 10px;
+            line-height: 10px;
+        }
+
+        .xiaofangkuai {
+            width: 120px;
+            height: 120px;
+            background-color: #f0f2f5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border-radius: 10% ;
+            /* text-align: center; */
+        }
+        .xiaofangkuai > div {
+            border-radius: 10%;
+            background-color: #f6f6f6;
+            border: 1px solid #e5e7e9;
+        }
+        /* .xiaofangkuai a {
+            color: #555556;
+        } */
+
+        .tu {
+            width: 50px;
+            height: 50px;
+            background-color: #f6f6f6;
+            border: 1px solid black;
+        }
+
+        .dahezi {
+            height: calc(100% - 80px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+
+        .da-1 {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .da-2 {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .mydiv6 {
+            width: 100%;
+            height: 100px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #1890ff;
+        }
+
+        .end-1 {
+            width: 130px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .end-2 {
+            cursor: pointer;
+        }
+
+        .mydiv3-1 {
+            width: 100%;
+            height: 60px;
+            display: flex;
+            /* background-color: #1890ff; */
+            /* border: 1px solid red; */
+            justify-content: space-between;
+            border-bottom: 1px solid gray;
+        }
+
+        .mydiv3-2 {
+            width: 100%;
+            height: 120px;
+            /* background-color: aquamarine; */
+            display: flex;
+            /* border: 1px solid blue; */
+            justify-content: space-around;
+        }
+
+        .mydiv3-1-top {
+            width: 400px;
+            height: 100%;
+            /* background-color: aqua; */
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .mydiv3-1-end {
+            width: 50%;
+            height: 100%;
+            display: flex;
+            /* background-color: red; */
+            align-items: center;
+            color: #999999;
+            justify-content: flex-end;
+            margin-right: 50px;
+        }
+
+        .mydiv3-wenzi {
+            width: 100px;
+            height: 100%;
+            display: flex;
+            /* background-color: aquamarine; */
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 16px;
+            /* border-bottom: 2px solid blue; */
+        }
+
+        .active1 {
+            border-bottom: 2px solid #3399ff;
+            color: #3399ff;
+        }
+
+        .mydiv3-2-1 {
+            width: 120px;
+            height: 120px;
+            /* background-color: aqua; */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .mydiv1-left {
+            width: 400px;
+            height: 100%;
+            margin-top: 20px;
+            /* background-color: aqua; */
+        }
+
+        .mydiv1-right {
+            width: 200px;
+            height: 100%;
+            margin-top: 10px;
+            /* background-color: blue; */
+        }
+
+        .mydiv .left-top {
+            width: 100%;
+            height: 100px;
+            /* background-color: #999999; */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* .left-end{
+            width: 100%;
+            height: 80px;
+            background-color: #409eff;
+        } */
+        .mydiv .right-top {
+            width: 100%;
+            height: 120px;
+            /* background-color: #999999; */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .mydiv .right-end {
+            width: 100%;
+            height: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mydiv .right-top img {
+            width: 120px;
+            height: 120px;
+        }
+
+        .mydiv .left-top img {
+            width: 100px;
+            height: 100px;
+        }
+
+        .mydiv .top-left {
+            width: 250px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            margin: 25px 0 25px 10px;
+            padding: 10px 5px 10px 0px;
+            /* background-color: #409eff; */
+        }
+
+        .xiaodiao {
+            font-size: 20px;
+        }
+
+        .aide {
+            color: #999999;
+        }
+
+        #shop-log-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .tu {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="mydiv">
+        <div class="mydiv1">
+            <div class="mydiv1-left">
+                <div class="left-top">
+                    <div id="shop-log-img"><img src="" alt="图片加载失败"></div>
+                    <div class="top-left">
+                        <div class="xiaodiao">DragoCai的小店</div>
+                        <div class="aide">ID: 10015</div>
+                        <div class="aide">上次登录时间：2019-05-24 09:41</div>
+                    </div>
+                </div>
+                <!-- <div class="left-end"></div> -->
+            </div>
+            <div class="mydiv1-right">
+                <div class="right-top">
+                    <img src="../img/首页/u83.png" alt="">
+                </div>
+                <div class="right-end">店铺小程序码</div>
+            </div>
+        </div>
+        <div class="mydiv2">
+            <div class="mydiv2-1">
+                <h4><b>待办事项</b></h4>
+            </div>
+            <div class="mydiv2-2">
+                <div class="mydiv2-3">
+                    <div class="mydiv2-4" id="dfk">10</div>
+                    <h3>待付款订单</h3>
+                </div>
+                <div class="mydiv2-3">
+                    <div class="mydiv2-4" id="dck">10</div>
+                    <h3>待出库订单</h3>
+                </div>
+                <div class="mydiv2-3">
+                    <div class="mydiv2-4-1" id="shdd">10</div>
+                    <h3>售后中订单</h3>
+                </div>
+                <div class="mydiv2-3">
+                    <div class="mydiv2-4" id="dpj">10</div>
+                    <h3>待评价订单</h3>
+                </div>
+            </div>
+        </div>
+        <div class="mydiv3">
+            <div class="mydiv3-1">
+                <div class="mydiv3-1-top">
+                    <div class="mydiv3-wenzi active1">今天数据</div>
+                    <div class="mydiv3-wenzi">昨天数据</div>
+                    <div class="mydiv3-wenzi">7天数据</div>
+                </div>
+                <div class="mydiv3-1-end">最后更新时间:2019-07-29 01:00</div>
+            </div>
+            <div class="mydiv3-2">
+                <div class="mydiv3-2-1">
+                    <div class="mydiv3-2-end1">10</div>
+                    <div class="mydiv3-2-end2">浏览量</div>
+                </div>
+                <div class="mydiv3-2-1">
+                    <div class="mydiv3-2-end1">10</div>
+                    <div class="mydiv3-2-end2">访客量</div>
+                </div>
+                <div class="mydiv3-2-1">
+                    <div class="mydiv3-2-end1" id="cjds">10</div>
+                    <div class="mydiv3-2-end2">成交单数</div>
+                </div>
+                <div class="mydiv3-2-1">
+                    <div class="mydiv3-2-end1">10</div>
+                    <div class="mydiv3-2-end2">成交商品数</div>
+                </div>
+                <div class="mydiv3-2-1">
+                    <div class="mydiv3-2-end1">10</div>
+                    <div class="mydiv3-2-end2">成交金额</div>
+                </div>
+            </div>
+        </div>
+        <div class="mydiv4">
+            <div class="mydiv4-1">
+                <h4><b>订阅消息</b></h4>
+                <div class="bangding">
+                    <button>开始绑定</button>
+                    <div class="mydiv4-wenzi">绑定微信并关注公众号，第一时间获取订单信息</div>
+                </div>
+            </div>
+            <div class="mydiv4-2">
+                <h4><b>快捷入口</b></h4>
+                <div id="hrefDiv" class="dahezi">
+                    <div class="da-1">
+                        <div class="xiaofangkuai">
+                            <div class="tu">
+                                <img src="../img/首页/图片.png" alt="">
+                            </div>
+                            <div><a data-url="./店铺管理-基本设置.html">基本设置</a> </div>
+                        </div>
+                        <div class="xiaofangkuai">
+                            <div class="tu">
+                                <img src="../img/首页/图片.png" alt="">
+                            </div>
+                            <div><a data-url="./商品管理-发布商品.html">发布商品</a> </div>
+                        </div>
+                        <div class="xiaofangkuai">
+                            <div class="tu">
+                                <img src="../img/首页/图片.png" alt="">
+                            </div>
+                            <div><a data-url="./商品管理-在售商品.html">商品列表</a> </div>
+                        </div>
+                        <div class="xiaofangkuai">
+                            <div class="tu">
+                                <img src="../img/首页/图片.png" alt="">
+                            </div>
+                            <div><a data-url="./商品管理-商品仓库.html">商品仓库</a> </div>
+                        </div>
+                    </div>
+                    <div class="da-2">
+                        <div class="xiaofangkuai">
+                            <div class="tu">
+                                <img src="../img/首页/图片.png" alt="">
+                            </div>
+                            <div><a data-url="./订单列表.html">订单列表</a> </div>
+                        </div>
+                        <div class="xiaofangkuai">
+                            <div class="tu">
+                                <img src="../img/首页/图片.png" alt="">
+                            </div>
+                            <div><a data-url="./客户管理.html">客户列表</a> </div>
+                        </div>
+                        <div class="xiaofangkuai">
+                            <div class="tu">
+                                <img src="../img/首页/图片.png" alt="">
+                            </div>
+                            <div><a data-url="./订单详情.html">账单明细</a> </div>
+                        </div>
+                        <div class="xiaofangkuai">
+                            <div class="tu">
+                                <img src="../img/首页/图片.png" alt="">
+                            </div>
+                            <div><a data-url="./提现申请.html">提现申请</a> </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mydiv5">
+            <div class="mydiv5-1">
+                <h4><b>热门问题</b></h4>
+            </div>
+            <div class="mydiv5-2">
+                <div class="end-1">
+                    <h5><a href="">如何使用本后台</a></h5>
+                </div>
+                <div class="end-2">
+                    <h5><a href="">如何发布商品</a></h5>
+                </div>
+            </div>
+        </div>
+        <div class="mydiv6"></div>
+    </div>
+
+
+    <script>
+        let NUM = 0
+        let NUM_1 = 0
+        let NUM_2 = 0
+        let NUM_3 = 0
+        let NUM_4 = 0
+
+        let user = JSON.parse(sessionStorage.getItem('user'))
+        console.log(user);
+        let order = JSON.parse(sessionStorage.getItem('order'))
+
+        $(function () {
+            console.log(order);
+            /* user名字 */
+            $('.xiaodiao').text(`${user.name} 的小店`)
+            order.forEach((item, index) => {
+                if (item.check == -1) {
+                    NUM++
+                    if (index && order[index].id == order[index - 1].id) {
+                        NUM--
+                    }
+                }
+            });
+            $('#dfk').text(NUM)
+            //待出库
+            order.forEach((item, index) => {
+                if (item.check == 1) {
+                    NUM_1++
+                    if (index && order[index].id == order[index - 1].id) {
+                        NUM_1--
+                    }
+                }
+            });
+            $('#dck').text(NUM_1)
+            //售后订单
+            order.forEach((item, index) => {
+                if (item.check == 2) {
+                    NUM_2++
+                    if (index && order[index].id == order[index - 1].id) {
+                        NUM_2--
+                    }
+                }
+            });
+            $('#shdd').text(NUM_2)
+            //已完成dpj
+            order.forEach((item, index) => {
+                if (item.check == 3) {
+                    NUM_3++
+                    if (index && order[index].id == order[index - 1].id) {
+                        NUM_3--
+                    }
+                }
+            });
+            $('#dpj').text(NUM_3)
+            //成交单数
+            order.forEach((item, index) => {
+                if (item.check == 3) {
+                    NUM_4++
+                    // if (index && order[index].id == order[index - 1].id) {
+                    //     NUM_4--
+                    // }
+                }
+            });
+            $('#cjds').text(NUM_4)
+
+
+
+        })
+
+
+        $('.mydiv3-1-top .mydiv3-wenzi').on('click', function () {
+            $(this).addClass('active1').siblings().removeClass('active1')
+        })
+
+        //店铺logo初始化
+        let user1 = JSON.parse(sessionStorage.getItem('user'))
+        $('#shop-log-img img').prop('src',user1.img)
+
+        // 快捷入口
+        $('#hrefDiv').on('click', 'a', function () {
+            $('#content').load(`${$(this).attr('data-url')}`)
+        })
+
+    </script>
+</body>
+
+</html>

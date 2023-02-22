@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.min.css">
+    <script src="../lib/bootstrap/js/jquery-1.11.3.js"></script>
+    <script src="../lib/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<style>
+    .header {
+        position: absolute;
+        height: 1250px;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        background-repeat: no-repeat;
+        background-size: cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f1f2f6;
+    }
+
+    .son {
+        width: 400px;
+        height: 60%;
+        display: flex;
+        border-radius: 10px;
+        /* -webkit-box-shadow: 2px -3px 44px 3px #00fffb;
+        -moz-box-shadow: 2px -3px 44px 3px #00fffb;
+        box-shadow: 2px -3px 44px 3px #00fffb; */
+        align-items: center;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    .center {
+        width: 90%;
+        height: 90%;
+        display: flex;
+        align-content: stretch;
+        align-items: center;
+        justify-content: space-around;
+        flex-direction: column;
+    }
+
+    .center>h4 {
+        color: #8a8b8d;
+    }
+
+    .center>div {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .center div {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .center input {
+        width: 100%;
+        color: black;
+        height: 35px;
+        margin-top: 20px;
+    }
+
+    .chongzhi {
+        width: 150px;
+        height: 40px;
+        background-color: #1890ff;
+        border-radius: 5px;
+        border: none;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    #checkboxError {
+        height: 15px;
+        width: 50px;
+    }
+
+    .checkbox {
+        width: 100%;
+    }
+
+    a {
+        text-decoration: none;
+        color: #1890ff;
+    }
+
+    .kong {
+        height: 100px;
+    }
+
+    .center>.bangzhu {
+        width: 50%;
+        height: 50px;
+        display: flex;
+        justify-content: space-around;
+        color: #858688;
+    }
+
+    .bang {
+        display: flex;
+    }
+
+    .end {
+        color: #858688;
+    }
+
+    .yanzheng {
+        background-color: #ffffff;
+        margin-top: 20px;
+        cursor: pointer;
+        margin-left: 20px;
+        width: 200px;
+        height: 40px;
+    }
+
+    .center>.chong {
+        width: 100%;
+        height: 80px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .wangji {
+        width: 100%;
+        height: 30px;
+        /* background-color: aqua; */
+        margin-right: 320px;
+    }
+</style>
+
+<body>
+    <div class="header">
+        <div class="son">
+            <div class="center">
+                <h2>电子商务平台</h2>
+                <h4>欢迎使用电子商务平台</h4>
+                <div class="wangji">注册</div>
+                <div>
+                    <input name="zhanghao" value="" type="text" id="userName" placeholder="请输入11位手机号" />
+                </div>
+                <div>
+                    <input name="yanzhengma" value="" type="text" id="pwd" placeholder="请输入验证码" />
+                    <button class="yanzheng">获取验证码</button>
+                </div>
+                <div>
+                    <input name="xinmima" value="" type="password" id="pwd-1" placeholder="请输入新密码，6-16密码，区分大小写" />
+                </div>
+                <div>
+                    <input name="querenmima" value="" type="password" id="pwd-2" placeholder="请再次确认新密码" />
+                </div>
+                <div class="chong">
+                    <button class="chongzhi" onclick="btn()">注册</button>
+                    <div><a href="./登录.html">已有账户登录</a></div>
+                </div>
+                <div class="kong"></div>
+                <div class="bangzhu">
+                    <p>帮助</p>
+                    <p>隐私</p>
+                    <p>条款</p>
+                </div>
+                <div class="end">copyright@2022 XXX电子商务平台</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 引入数据 -->
+    <script src="../commonData.js"></script>
+    <script>
+        /* 定义一个状态值 */
+        let is_true = false
+        /* 定义一个对象 */
+        let myUser= {
+            id: user.length,
+            name: 'ME(请设置昵称)',
+            img: '',
+            level: 1,
+            account: '',
+            pwd: '',
+            phone: '',
+            email: '',
+            weiXin: '',
+            wallet: 0,
+            sName: '',
+            sPhone: '',
+            sIntro: '',
+            sSort: '',
+            sAddress: '',
+            sLogo: '',
+            sImg: '',
+            sCode: '',
+            sCompany: '',
+            deadLine: '',
+            sLicence: '',
+        }
+
+        /* 判断手机格式 */
+        $('#userName').blur(function () {
+            let reg = /^1[3-9]\d{9}$/
+            let shoujihao = $('#userName').val()
+            console.log(shoujihao);
+            if (reg.test(shoujihao)) {
+                is_true = true
+            } else {
+                alert('请输入正确的手机号格式')
+                $('#userName').val('')
+            }
+
+        })
+
+
+        //注册按钮事件
+        function btn() {
+            let pwd_1 = $('#pwd-1').val()
+            let pwd_2 = $('#pwd-2').val()
+            console.log(pwd_1 == pwd_2);
+            if (is_true && pwd_1 == pwd_2) {
+                let phone = $('#userName').val()
+                myUser.id = user.length+1
+                myUser.phone = phone
+                myUser.account = phone
+                myUser.pwd = pwd_1
+                user.push(myUser)
+
+                sessionStorage.setItem('user',JSON.stringify(user))
+                location.href = './登录.html'
+            } else {
+                alert('两次密码不一样......')
+
+            }
+            $('#pwd-1').val('')
+            $('#pwd-2').val('')
+        }
+
+        //随机函数
+        function getRandom(min, max) {
+            return Math.floor(Math.random() * (max - min + 1) + min)
+        }
+        console.log();
+        //验证码
+        $('.yanzheng').click(function () {
+
+            $('#pwd').val(getRandom(1000, 9999))
+        })
+        //
+
+    </script>
+</body>
+
+</html>

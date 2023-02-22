@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.min.css" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    a {
+      cursor: pointer;
+    }
+    .couponFrame {
+      width: 100%;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      background-color: #f0f2f5;
+    }
+    .couponSearchFrame {
+      width: calc(100% - 40px);
+      height: 90px;
+      border-radius: 5px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-sizing: content-box;
+      margin-bottom: 20px;
+      background-color: white;
+    }
+    .searchInput {
+      display: flex;
+      align-items: center;
+    }
+    .searchInput label {
+      margin: 0;
+    }
+    #searchB:hover {
+      color: white;
+      background-color: rgb(73, 125, 255);
+    }
+    .searchB {
+      color: white;
+      background-color: rgb(73, 125, 255);
+      margin-right: 20px;
+      /* padding: 0 20px; */
+    }
+    #resetB {
+      color: black;
+      background-color: white;
+    }
+    #exampleInputCoupon {
+      width: 200px;
+    }
+    .couponTableFrame {
+      width: 100%;
+      height: auto;
+      padding: 20px;
+      background-color: white;
+      display: flex;
+      flex-direction: column;
+      border-radius: 5px;
+    }
+    .couponTable {
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      margin: 0;
+      padding: 0;
+    }
+    .couponTableHeader {
+      height: 50px;
+      background-color: rgb(239, 239, 239);
+      border-radius: 5px 5px 0 0;
+      margin: 0;
+      padding: 0;
+    }
+    .couponTableHeader p {
+      margin: 0;
+      height: 100%;
+      line-height: 3.4;
+      font-size: 15px;
+      font-weight: bolder;
+    }
+    .couponTableBody {
+      margin: 0;
+      height: 100%;
+      line-height: 3.4;
+      font-size: 15px;
+      border-bottom: 1px solid rgb(238, 238, 238);
+    }
+    .couponTableBody p {
+      margin: 0;
+      color: rgb(104, 104, 104);
+    }
+    .couponTableFooter {
+      width: 100%;
+      height: 50px;
+      /* background-color: aquamarine; */
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 10px;
+      box-sizing: content-box;
+    }
+    .createCoupon:hover {
+      color: white;
+      background-color: rgb(73, 125, 255);
+    }
+    .createCoupon {
+      height: 34px;
+      margin: 0 5px;
+    }
+    .pageFrame {
+      width: auto;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      /* flex-direction: row-reverse; */
+    }
+    .pageFrame p {
+      width: 100px;
+      height: 20px;
+      margin: 0;
+    }
+    .pageFrame select {
+      width: 100px;
+      margin-left: 5px;
+    }
+    .btnShow {
+      width: 220px;
+      display: flex;
+    }
+  </style>
+  <body>
+    <div class="couponFrame">
+      <!-- 搜索 -->
+      <div class="couponSearchFrame">
+        <div class="searchInput">
+          <label for="exampleInputCoupon">优惠券名称：</label>
+          <input
+            type="text"
+            class="form-control"
+            id="exampleInputCoupon"
+            placeholder="请输入"
+          />
+        </div>
+        <div class="searchButton">
+          <a
+            id="searchB"
+            class="btn btn-default searchB"
+            href="#"
+            role="button"
+          >
+            查询
+          </a>
+
+          <a id="resetB" class="btn btn-default searchB" href="#" role="button">
+            重置
+          </a>
+        </div>
+      </div>
+      <!-- 表格 -->
+      <div class="couponTableFrame">
+        <div class="container-fluid couponTable">
+          <div class="row couponTableHeader">
+            <div class="col-md-2"><p>优惠券名称</p></div>
+            <div class="col-md-2"><p>优惠券内容</p></div>
+            <div class="col-md-1"><p>状态</p></div>
+            <div class="col-md-2"><p>已使用</p></div>
+            <div class="col-md-1"><p>库存(件)</p></div>
+            <div class="col-md-2"><p>优惠券有效期</p></div>
+            <div class="col-md-2"><p>操作</p></div>
+          </div>
+        </div>
+        <div class="couponTableFooter">
+          <a id="createCoupon" class="btn btn-default searchB" role="button">
+            创建优惠券
+          </a>
+          <div class="pageFrame">
+            <p>总共$$$个项目</p>
+            <a id="prePage" class="btn btn-default createCoupon" role="button">
+              ←
+            </a>
+            <div class="btnShow"></div>
+            <a id="nextPage" class="btn btn-default createCoupon" role="button">
+              →
+            </a>
+            <select id="pageControl" class="form-control">
+              <option>5条/页</option>
+              <option>10条/页</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="../lib/bootstrap/js/jquery-1.11.3.js"></script>
+  <script src="../lib/bootstrap/js/bootstrap.js"></script>
+  <script src="../main.js"></script>
+  <script>
+    // 获取优惠券信息
+    let couponArr = getInfo('coupon')
+    let cSearchArr = []
+    let page = 1
+    let pNum = 5
+
+    // 打开页面首次渲染
+    showPage(couponArr)
+
+    // 渲染函数
+    function showPage(arr) {
+      if ($('.couponTableBody')) {
+        $('.couponTableBody').remove()
+      }
+      let arrTarget = arr.slice((page - 1) * pNum, page * pNum)
+
+      // 渲染表格
+      arrTarget.forEach((item, index) => {
+        // 年vEndArr[0]
+        // 月vEndArr[1]
+        // 日vEndArr[2]
+        let dateNow = new Date()
+        let vEndArr = item.vEnd.split('-')
+        $('.couponTable').append(`
+          <div class="row couponTableBody">
+            <div class="col-md-2"><p>${item.name}</p></div>
+            <div class="col-md-2"><p>满${
+              item.threshold == -1 ? 0 : item.threshold
+            }减${item.discount}</p></div>
+            <div class="col-md-1"><p>${
+              dateNow.getFullYear > vEndArr[0]
+                ? dateNow.getMonth > vEndArr[1]
+                  ? dateNow.getDate > vEndArr[2]
+                    ? item.cNum > 0
+                      ? '正常'
+                      : '已清空'
+                    : '已过期'
+                  : '已过期'
+                : '已过期'
+            }</p></div>
+            <div class="col-md-2"><p>${1000 - item.cNum}</p></div>
+            <div class="col-md-1"><p>${item.cNum}</p></div>
+            <div class="col-md-2"><p>${item.vStart} ~ ${item.vEnd}</p></div>
+            <div class="col-md-2">
+              <p>
+                <a data-id="${item.id}" class="lookB">查看</a>
+                <a data-id="${item.id}" class="changeB">编辑</a>
+                <a data-delId="${item.id}" class="delB">删除</a>
+              </p>
+            </div>
+          </div>`)
+      })
+
+      // 渲染数据为空时，前往最后一页
+      if (!arrTarget.length) {
+        page = Math.ceil(arr.length / pNum)
+        showPage(arr)
+        // return @退出当前函数 避免栈溢出
+        return -1
+      }
+
+      // 渲染分页按钮
+      $('.btnShow').html(``)
+      pageCheck = 1
+      while (page > pageCheck + 4) {
+        pageCheck += 5
+      }
+      for (
+        let i = pageCheck;
+        i <= Math.ceil(arr.length / pNum) && i <= pageCheck + 4;
+        i++
+      ) {
+        $('.btnShow').append(`
+          <a class="btn btn-default createCoupon pageB" role="button" data-page="${i}">
+            ${i}
+          </a>`)
+      }
+
+      // 当前页高亮
+      for (let j = 0; j < $('.btnShow > a').length; j++) {
+        if ($('.btnShow > a').eq(j).html() == page) {
+          $('.btnShow > a').eq(j).css({
+            backgroundColor: 'rgb(73, 125, 255)',
+            color: 'white',
+          })
+        }
+      }
+
+      // 渲染提示信息
+      $('.pageFrame>p').html(`总共${arr.length}个项目`)
+    }
+
+    // 上一页
+    $('#prePage').on('click', () => {
+      if (page > 1) {
+        page--
+        cSearchArr.length ? showPage(cSearchArr) : showPage(couponArr)
+      }
+    })
+
+    // 下一页
+    $('#nextPage').on('click', () => {
+      if (page < Math.ceil(couponArr.length / 5)) {
+        page++
+        cSearchArr.length ? showPage(cSearchArr) : showPage(couponArr)
+      }
+    })
+
+    // 切换分页 @事件委托
+    $('.btnShow').on('click', '.pageB', function () {
+      // console.log($(this).attr('data-page'))
+      page = Number($(this).attr('data-page'))
+      cSearchArr.length ? showPage(cSearchArr) : showPage(couponArr)
+    })
+
+    // 修改分页 5条或10条一页
+    $('#pageControl').on('change', () => {
+      pNum = parseInt($('#pageControl').val())
+      cSearchArr.length ? showPage(cSearchArr) : showPage(couponArr)
+    })
+
+    // 删除 @事件委托
+    $('.couponTable').on('click', '.delB', function () {
+      couponArr.forEach((item, index) => {
+        if (item.id == $(this).attr('data-delId')) {
+          couponArr.splice(index, 1)
+          saveInfo('couponArr', couponArr)
+        }
+      })
+      cSearchArr.forEach((item, index) => {
+        if (item.id == $(this).attr('data-delId')) {
+          cSearchArr.splice(index, 1)
+          cSearchArr.length ? showPage(cSearchArr) : showPage(couponArr)
+        }
+      })
+    })
+
+    // 查询
+    $('#searchB').on('click', () => {
+      cSearchArr = []
+      couponArr.forEach((item, index) => {
+        if (
+          couponArr[index].name.indexOf($('#exampleInputCoupon').val()) != -1
+        ) {
+          cSearchArr.push(couponArr[index])
+        }
+      })
+      page = 1
+      showPage(cSearchArr)
+    })
+
+    // 查看
+    $('.couponTable').on('click', '.lookB', function () {
+      saveInfo('couponCheck', { couponCheck: 1, cid: $(this).attr('data-id') })
+      $('#content').load('./营销中心-优惠券-添加&修改.html')
+    })
+
+    // 编辑
+    $('.couponTable').on('click', '.changeB', function () {
+      saveInfo('couponCheck', { couponCheck: 2, cid: $(this).attr('data-id') })
+      console.log(getInfo('couponCheck'))
+      $('#content').load('./营销中心-优惠券-添加&修改.html')
+    })
+
+    // 添加
+    $('#createCoupon').on('click', () => {
+      $('#content').load('./营销中心-优惠券-添加&修改.html')
+    })
+
+    // 重置
+    $('#resetB').on('click', () => {
+      cSearchArr = []
+      page = 1
+      $('#exampleInputCoupon').val(``)
+      showPage(couponArr)
+    })
+  </script>
+</html>

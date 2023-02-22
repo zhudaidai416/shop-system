@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>在售商品</title>
+    <link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="../lib/bootstrap/css/bootstrap-datetimepicker.min.css"/>
+    <script src="../lib/bootstrap/js/jquery-1.11.3.js"></script>
+    <script src="../lib/bootstrap/js/bootstrap.js"></script>
+    <script src="../lib/bootstrap/js/moment-with-locales.js"></script>
+    <script src="../lib/bootstrap/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="../commonData.js"></script>
+    <script src="../main.js"></script>
+    
+    <style>
+        #bodyContent{
+            background-color: #F0F2F5; 
+        }
+        .searchDiv{
+            width: 100%;
+            height: 140px;
+            background-color: white;
+            padding: 15px 10px;
+        }
+        .form-group{
+            padding: 10px 30px;
+            margin: 0;
+        }
+        .form-group label{
+            height: 30px;
+            line-height: 30px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .form-group:last-of-type{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #wareName,#wareId{
+            display: inline-block;
+            width: 70%;
+        }
+        #datetimepicker1,#datetimepicker2{
+            width: 35%;
+        }
+        .input-group-addon{
+            background-color: white;
+        }
+        .glyphicon-time{
+            font-size: 17px;
+            color: grey;
+        }
+        #search,#pubWare{
+            background-color: #1890FF;
+            color: white;
+        }
+        #search{
+            margin: 10px 20px 10px 10px;
+        }
+        #reset,#checkSoldOut{
+            margin: 10px 20px 10px 0px;
+        }
+        #pubWare{
+            margin: 10px 20px 10px 0px;
+        }
+        .tableDiv{
+            width: 100%;
+            overflow: hidden;
+            background-color: white;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        .table td{
+            height: 50px;
+            line-height: 50px !important;
+            text-align: center;
+        }
+        .table-light{
+            background-color: #F0F2F5; 
+            position: relative;
+        }
+        .wareImg{
+            width: 50px;
+            height: 50px;
+            border: 1px solid rgb(199, 199, 199);
+            border-radius: 5px;
+            display: inline-block;
+            margin: 0 10px;
+        }
+        .increase{
+            position: absolute;
+            top: 27px;
+            color: grey;
+            margin: 0px 5px;
+            transform: rotateX(180deg);
+            cursor: pointer;
+        }
+        .decrease{
+            position: absolute;
+            top: 35px;
+            color: grey;
+            margin: 0px 5px;
+            cursor: pointer;
+        }
+        .revampWare,.soldOutWare{
+            color: #1890FF;
+            margin: 0px 5px;
+        }
+        .revampWare:hover,.soldOutWare:hover{
+            text-decoration: underline;
+            color: #000;
+        }
+        .bottomNav{
+            width: 100%;
+        }
+        .bottomNav > div{
+            float: right;
+            width: 50%;
+            margin: 10px 0;
+        }
+        .pageText{
+            height: 32px;
+            line-height: 32px;
+            text-align: right;
+            width: 27%;
+            float: left;
+        }
+        .pageList{
+            float: right;
+            width: 70%;
+        }
+        #prePage,#nextPage{
+            width: 32px;
+            height: 32px;
+            line-height: 30px;
+            text-align: center;
+            float: left;
+            border: 1px solid rgb(199, 199, 199);
+            border-radius: 5px;
+        }
+        #prePage:hover,#nextPage:hover{
+            background-color: #F0F2F5;     
+        }
+        #prePage img,#nextPage img{
+            width: 15px;
+            height: 15px;   
+        }
+        #prePage img{
+            transform: rotateY(180deg);
+        }
+        .item{
+            width: 32px;
+            height: 32px;
+            line-height: 32px;
+            text-align: center;
+            border: 1px solid rgb(199, 199, 199);
+            border-radius: 5px;
+            margin: 0 5px;
+            float: left;
+        }
+        .form-control{
+            width: 25%;
+            float: right;
+        }
+        .pageActive{
+            background-color: #1890FF; 
+            color: white;      
+        }
+    </style>
+</head>
+<body>
+<div id="bodyContent">
+    <!-- 搜索框 -->
+    <section class="searchDiv">
+        <form class="row">
+            <div class="form-group col-lg-3">
+              <label for="wareName">商品名称：</label>
+              <input type="text" class="form-control" id="wareName" placeholder="请输入">
+            </div>
+            <div class="form-group col-lg-3">
+              <label for="wareId">商品编号：</label>
+              <input type="text" class="form-control" id="wareId" placeholder="请输入">
+            </div>
+            <div class="form-group col-lg-6">
+                    <label>上架时间：</label>
+                    <!--指定 date标记-->
+                    <div class='input-group date' id='datetimepicker1'>
+                        <input type='text' class="form-control" placeholder="请选择开始时间" id="startTime">
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-time"></span>
+                        </span>
+                    </div>
+                    <span>&nbsp&nbsp——&nbsp&nbsp</span>
+                    <div class='input-group date' id='datetimepicker2'>
+                        <input type='text' class="form-control" placeholder="请选择结束时间" id="endTime">
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-time"></span>
+                        </span>
+                    </div>
+            </div>
+        </form>   
+        <button class="btn btn-default" type="button" id="search">查询</button>
+        <button class="btn btn-default" type="button" id="reset">重置</button>
+    </section>
+    
+    <!-- 表格部分 -->
+    <section class="tableDiv"> 
+        <table class="table">
+            <!-- 表头 -->
+            <thead class="table-light">
+                <tr>
+                    <td>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="allcheck">
+                        </div>
+                    </td>
+                    <td>商品编号</td>
+                    <td colspan="2">商品信息</td>
+                    <td>
+                        <span>售价(元)</span>
+                        <span class="caret increase"></span>
+                        <span class="caret decrease"></span>
+                    </td>
+                    <td>
+                        <span>库存(件)</span>
+                        <span class="caret increase"></span>
+                        <span class="caret decrease"></span>
+                    </td>
+                    <td>
+                        <span>30天销量(件)</span>
+                        <span class="caret increase"></span>
+                        <span class="caret decrease"></span>
+                    </td>
+                    <td>
+                        <span>上架时间</span>
+                        <span class="caret increase"></span>
+                        <span class="caret decrease"></span>
+                    </td>
+                    <td>操作</td>
+                </tr>
+            </thead>
+            <!-- 表格内容 -->
+            <tbody id="wareTable">
+              
+            </tbody>
+        </table>
+        <!-- 页码列表 -->
+        <div class="bottomNav">
+            <button class="btn btn-default" type="button" id="pubWare">发布商品</button>
+            <button class="btn btn-default" type="button" id="checkSoldOut">下架</button>
+            <div>
+                <div class="pageText"></div>
+                <div class="pageList">
+                    <div id="prePage">
+                        <img src="../img/下一页.png" alt="">
+                    </div>
+                    <div id="nextPage">
+                        <img src="../img/下一页.png" alt="">
+                    </div>
+                    <select class="form-control col-lg-3" id="tiaoshu">
+                        <option value="3">3条/页</option>
+                        <option value="5">5条/页</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 下架的模态框 -->
+    <div class="modal fade" id="soldOutModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">下架</h4>
+                </div>
+                <div class="modal-body">
+                    是否下架该商品？
+                </div>
+                <div class="modal-footer"><button type="button" class="btn btn-primary" id="confirmSoldOut">确认</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <script type="text/javascript">
+        let ware = getInfo('ware')
+        let maxPage
+        let nowPage = 1
+        let searchArr = []
+        let pageArr = []
+        let soldOutId = []
+        let tiaoshu = 3
+
+        // 过滤掉未上架的商品
+        let wareArr = ware.filter(item=>{
+            return item.shelfTime != ''
+        })
+        searchWare()
+
+        // 条数绑定事件
+        $('#tiaoshu').on('change',function(){
+            tiaoshu = parseInt($('#tiaoshu option:selected').val())
+            searchWare()
+        })
+
+        // 日期控件
+        $(function(){
+            $('#datetimepicker1,#datetimepicker2').datetimepicker({
+                format: 'YYYY-MM-DD HH:mm:ss',
+                locale: moment.locale('zh-cn')
+            }); 
+        });
+
+        // 查询商品
+        $('#search').click(function(){
+            searchWare()
+        })
+        // 查询商品函数
+        function searchWare(){
+            let wareName = $('#wareName').val()
+            let wareId = $('#wareId').val()
+            let startTime = $('#startTime').val()
+            let endTime = $('#endTime').val()
+
+            searchArr = [...wareArr]
+
+            if(wareName!=''){
+                let reg = new RegExp(wareName)
+                // console.log(reg)
+                searchArr = searchArr.filter(item=>{
+                    return item.name.match(reg)
+                })
+            }
+            if(wareId!=''){
+                searchArr = searchArr.filter(item=>{
+                    return item.id == wareId
+                })
+            }
+            if(startTime!='' && endTime!=''){
+                let startTimeStamp = Date.parse(startTime)
+                let endTimeStamp = Date.parse(endTime)
+                searchArr = searchArr.filter(item=>{
+                    let shelfTimeStamp = Date.parse(item.shelfTime)
+                    console.log(shelfTimeStamp)
+                    if(startTimeStamp <= shelfTimeStamp && shelfTimeStamp <= endTimeStamp){
+                        return item
+                    }
+                })
+            }
+            // console.log(searchArr)
+            pageList(searchArr)
+            nowPageData(nowPage,searchArr)
+        }
+
+        // 重置查询
+        $('#reset').click(function(){
+            $('#wareName').val('')
+            $('#wareId').val('')
+            $('#startTime').val('')
+            $('#endTime').val('')
+            wareArr = wareArr.sort((a,b) => a.id < b.id ? -1 : a.id > b.id ? 1 : 0)
+            searchWare()
+        })
+        
+        // 渲染表格
+        function showTable(data){
+            $('#wareTable').html('')
+            for(let i=0;i<data.length;i++){
+                // “长于10个汉字长度截断”的处理
+                let wareName
+                if(data[i].name.length>10){
+                    wareName = data[i].name.substr(0,10)+'...'
+                }else{
+                    wareName = data[i].name
+                }
+                let wareImg = data[i].img
+
+                $('#wareTable').append(`
+                <tr>
+                    <td>
+                        <div class="form-check">
+                            <input class="form-check-input checkedWare" type="checkbox" data-id='${data[i].id}'>
+                        </div>
+                    </td>
+                    <td>${data[i].id}</td>
+                    <td>                
+                        <img class="wareImg" src="${wareImg[0]}" alt="...">
+                    </td>
+                    <td>
+                        <div class="wareText">${wareName}</div>
+                    </td>
+                    <td>${data[i].price}</td>
+                    <td>${data[i].caseNum}</td>
+                    <td>${data[i].sellNum}</td>
+                    <td>${data[i].shelfTime}</td>
+                    <td>
+                        <span class="revampWare" data-ware='${JSON.stringify(data[i])}'>修改</span>
+                        <span class="soldOutWare" data-id='${data[i].id}'>下架</span>
+                    </td>
+                </tr>
+                `)
+            }
+        }
+
+        // 页码列表
+        function pageList(data){
+            $('.pageText').text('')
+            pageArr = []
+            $('.pageText').text(`总共${data.length}个项目`)
+            maxPage = Math.ceil(data.length/tiaoshu) 
+            for(let i=1;i<=maxPage;i++){
+                pageArr.push(i)
+            }
+            // console.log('总的页码数：'+pageArr)
+        }
+
+        // 页码分页
+        function fyPage(page,data){
+            $('.item').remove()
+            let beishu = parseInt((page-1)/5)
+            let pageListData
+            if(maxPage-beishu*5<5){
+                pageListData = data.slice(beishu*5,pageArr[pageArr.length-1])
+            }else{
+                pageListData = data.slice(beishu*5,beishu*5+5)
+            }
+            for(let i=0;i<pageListData.length;i++){
+                $('#nextPage').before(`
+                <div class="item">${pageListData[i]}</div>
+                `)
+            }
+            $('.item').eq((page-1)%5).addClass('pageActive').siblings().removeClass('pageActive')
+        }
+        
+        // 当前页数据
+        function nowPageData(page,data){
+            // 数据过滤
+            data = data.filter(item=>{
+                return item.shelfTime != ''
+            })
+            // 数据截取
+            let qishi = (page-1)*tiaoshu
+            let nowData = data.slice(qishi,qishi+tiaoshu)
+            showTable(nowData)
+            nowPage = page
+            fyPage(nowPage,pageArr)
+            // 批量选择
+            $('#allcheck').on('change',function(){
+                if($('#allcheck').prop("checked")){
+                    $('.checkedWare').prop("checked",true)
+                    console.log('全选')
+                }else{
+                    $('.checkedWare').prop("checked",false)
+                    console.log('取消全选')
+                }
+            })
+        }
+        
+        // 页码绑定点击事件
+        $('.pageList').on('click','.item',function(){
+            nowPageData(parseInt($(this).text()),searchArr)
+        })
+
+        // 上一页
+        $('.pageList').on('click','#prePage',function(){
+            if(nowPage > 1){
+                nowPage--
+                nowPageData(nowPage,searchArr)
+            }
+        })
+
+        // 下一页
+        $('.pageList').on('click','#nextPage',function(){
+            if(nowPage < maxPage){
+                nowPage++
+                nowPageData(nowPage,searchArr)
+            }
+        })
+
+        // 下架
+        $('#wareTable').on('click','.soldOutWare',function(){
+            soldOutId = []
+            soldOutId.push($(this).attr('data-id'))
+            // console.log(soldOutId)
+            $('#soldOutModal').modal()
+            wareSoldOut()
+        })
+        
+        // 确认下架
+        function wareSoldOut(){
+            $('#confirmSoldOut').off()
+            $('#confirmSoldOut').on('click',function(){
+                for(let i=0;i<wareArr.length;i++){
+                    for(let j=0;j<soldOutId.length;j++){
+                        if(wareArr[i].id == soldOutId[j]){
+                            wareArr[i].shelfTime = ''
+                            wareArr = wareArr.filter(item=>{
+                                return item.shelfTime != ''
+                            })
+                        }
+                    }     
+                }
+                for(let i=0;i<wareArr.length;i++){
+                    for(let k=0;k<ware.length;k++){
+                        if(wareArr[i].id==ware[k].id){
+                            ware[k].shelfTime = wareArr[i].shelfTime
+                        }
+                    }
+                }
+                saveInfo('ware', ware)
+                searchWare()
+                $('#allcheck').prop("checked",false)
+                $('#soldOutModal').modal('hide')
+            })
+        }
+
+        // 批量下架
+        $('#checkSoldOut').click(function(){
+            soldOutId = []
+            let items = $('.checkedWare')
+            for(let i=0;i<items.length;i++){
+                if(items[i].checked){
+                    soldOutId.push($(items[i]).attr('data-id'))
+                }
+            }
+            wareSoldOut()
+            console.log('批量下架的商品编号：'+soldOutId)
+            $('#soldOutModal').modal()
+            $('#allcheck').off()
+        })
+
+        // 发布商品
+        $('#pubWare').click(function(){
+            $("#nav > li:nth-of-type(3) > ul > li:nth-of-type(2)").removeClass("active")
+            $("#nav > li:nth-of-type(3) > ul > li:first-child").addClass("active")
+            $("#content").load('./商品管理-发布商品.html')
+        })
+
+        // 表格升序排序
+        $('.increase').click(function(){
+            console.log($(this).prev().text())
+            if($(this).prev().text()=='售价(元)'){
+                wareArr = wareArr.sort((a,b) => a.price < b.price ? -1 : a.price > b.price ? 1 : 0)
+            }else if($(this).prev().text()=='库存(件)'){
+                wareArr = wareArr.sort((a,b) => a.caseNum < b.caseNum ? -1 : a.caseNum > b.caseNum ? 1 : 0)
+            }else if($(this).prev().text()=='30天销量(件)'){
+                wareArr = wareArr.sort((a,b) => a.sellNum < b.sellNum ? -1 : a.sellNum > b.sellNum ? 1 : 0)
+            }else if($(this).prev().text()=='上架时间'){
+                wareArr = wareArr.sort((a,b) => a.shelfTime < b.shelfTime ? -1 : a.shelfTime > b.shelfTime ? 1 : 0)
+            }
+            searchWare()
+        })
+        
+        // 表格降序排序
+        $('.decrease').click(function(){
+            console.log($(this).prev().prev().text())
+            if($(this).prev().prev().text()=='售价(元)'){
+                wareArr = wareArr.sort((a,b) => a.price < b.price ? 1 : a.price > b.price ? -1 : 0)
+            }else if($(this).prev().prev().text()=='库存(件)'){
+                wareArr = wareArr.sort((a,b) => a.caseNum < b.caseNum ? 1 : a.caseNum > b.caseNum ? -1 : 0)
+            }else if($(this).prev().prev().text()=='30天销量(件)'){
+                wareArr = wareArr.sort((a,b) => a.sellNum < b.sellNum ? 1 : a.sellNum > b.sellNum ? -1 : 0)
+            }else if($(this).prev().prev().text()=='上架时间'){
+                wareArr = wareArr.sort((a,b) => a.shelfTime < b.shelfTime ? 1 : a.shelfTime > b.shelfTime ? -1 : 0)
+            }
+            searchWare()
+        })
+
+        // 修改商品
+        $('#wareTable').on('click','.revampWare',function(){
+            let wareStr = $(this).attr('data-ware')
+            sessionStorage.setItem('wareChange',wareStr)
+            $("#nav > li:nth-of-type(3) > ul > li:nth-of-type(2)").removeClass("active")
+            $("#nav > li:nth-of-type(3) > ul > li:first-child").addClass("active")
+            $("#content").load('./商品管理-发布商品.html') 
+        })
+    </script>
+</body>
+</html>

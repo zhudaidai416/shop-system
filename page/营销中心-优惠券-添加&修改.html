@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.min.css" />
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .couponAddFrame {
+      width: 100%;
+      height: auto;
+      background-color: #f0f2f5;
+    }
+    .couponAdd {
+      width: 100%;
+      height: auto;
+      background-color: white;
+      margin-bottom: 15px;
+      border-radius: 5px;
+    }
+    .couponAdd > h2 {
+      width: 100%;
+      margin: 0;
+      font-size: 19px;
+      font-weight: 600;
+      padding: 15px 20px 15px 20px;
+      border-bottom: 1px solid rgb(227, 227, 227);
+    }
+    .couponAdd > div {
+      width: calc(100% - 40px);
+      height: auto;
+      padding: 20px 20px 30px 20px;
+    }
+    .couponAdd span {
+      color: red;
+    }
+    .couponAdd label {
+      font-size: 14px;
+      font-weight: 400;
+      margin: 0;
+    }
+    .couponAdd input:not(input[type='radio']) {
+      width: 280px;
+      margin: 0 10px;
+    }
+    .couponAdd input[type='radio'] {
+      margin: 0;
+      cursor: pointer;
+    }
+    .cFormRow {
+      display: flex;
+      align-items: center;
+      padding: 10px 0;
+    }
+    .cFormRow p {
+      margin: 0;
+      padding: 0 10px 0 5px;
+    }
+    .cFormRow textarea {
+      width: 500px;
+      height: 100px;
+      padding: 10px;
+      resize: none;
+      margin: 10px 10px 0 10px;
+    }
+    .shortInput {
+      width: 100px !important;
+    }
+    .couponAddFooter {
+      padding-bottom: 0px !important;
+    }
+    .couponAddFooter .cFormRow {
+      justify-content: space-between;
+    }
+    .couponAddFooter p {
+      color: red;
+    }
+  </style>
+  <body>
+    <div class="couponAddFrame">
+      <form action="#" id="cAddForm">
+        <div class="couponAdd">
+          <h2>基础信息</h2>
+          <div class="basicSet">
+            <div class="cFormRow">
+              <label>
+                <span>*</span>
+                优惠券名称:
+              </label>
+              <input
+                type="text"
+                class="form-control"
+                name="cName"
+                value=""
+                placeholder="最多可输入10个字符"
+              />
+            </div>
+            <div class="cFormRow">
+              <label>
+                <span>*</span>
+                库存:
+              </label>
+              <input
+                type="text"
+                class="form-control shortInput"
+                name="caseNum"
+                value=""
+                placeholder="请输入"
+              />
+            </div>
+            <div class="cFormRow">
+              <label>
+                <span>*</span>
+                可用商品:
+              </label>
+              <input class="wareRadio" type="radio" name="cCheck" value="1" />
+              <p>全部商品可用</p>
+              <input class="wareRadio" type="radio" name="cCheck" value="2" />
+              <p>指定商品可用</p>
+              <input class="wareRadio" type="radio" name="cCheck" value="3" />
+              <p>指定商品不可用</p>
+            </div>
+            <div class="cFormRow">
+              <label>
+                <span>*</span>
+                优惠券有效期:
+              </label>
+              <input
+                type="date"
+                class="form-control vStart"
+                name="vStart"
+                value=""
+                style="width: 200px;"
+              />
+              <p>—</p>
+              <input
+                type="date"
+                class="form-control vEnd"
+                name="vEnd"
+                value=""
+                style="width: 200px;"
+              />
+            </div>
+            <div class="cFormRow">
+              <label>
+                <span>*</span>
+                领券当日起
+              </label>
+              <input
+                type="text"
+                class="form-control shortInput"
+                name="validity"
+                value=""
+                placeholder="请输入"
+              />
+              天内有效
+            </div>
+          </div>
+        </div>
+        <div class="couponAdd">
+          <h2>优惠券设置</h2>
+          <div class="conponSet">
+            <div class="cFormRow">
+              <label>
+                <span>*</span>
+                使用门槛:
+              </label>
+              <input
+                class="shelfCheck"
+                type="radio"
+                name="shelfCheck"
+                value="1"
+              />
+              订单满
+              <input
+                id="shelfCash"
+                type="text"
+                class="form-control shortInput"
+                name="shelfCash"
+                value="0"
+                placeholder="请输入"
+              />
+              元使用
+            </div>
+            <div class="cFormRow">
+              <input
+                class="shelfCheck"
+                type="radio"
+                name="shelfCheck"
+                value="-1"
+              />
+              无使用门槛
+            </div>
+            <div class="cFormRow">
+              <label>
+                <span>*</span>
+                优惠内容:
+              </label>
+              减免
+              <input
+                type="text"
+                class="form-control shortInput"
+                name="dCash"
+                value=""
+                placeholder="请输入"
+              />
+              元
+            </div>
+          </div>
+        </div>
+        <div class="couponAdd">
+          <h2>规则设置</h2>
+          <div class="ruleSet">
+            <div class="cFormRow">
+              <label>
+                <span>*</span>
+                每人限领次数：限制
+              </label>
+              <input
+                type="text"
+                class="form-control shortInput"
+                name="pickNum"
+                value=""
+                placeholder="请输入"
+              />
+              次
+            </div>
+            <div class="cFormRow">
+              <label style="height: 80px;">
+                <span>*</span>
+                使用说明（可选）:
+              </label>
+              <textarea
+                name="cIntro"
+                value=""
+                placeholder="最多500个字符"
+              ></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="couponAdd">
+          <div class="couponAddFooter">
+            <div class="cFormRow">
+              <p></p>
+              <div>
+                <a id="goBack" class="btn btn-default" role="button">
+                  返回
+                </a>
+                <button
+                  id="createCoupon"
+                  type="submit"
+                  class="btn btn-default"
+                  role="button"
+                  style="background-color: rgb(73, 125, 255); color: white;"
+                >
+                  创建
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </body>
+  <script src="../lib/bootstrap/js/jquery-1.11.3.js"></script>
+  <script src="../main.js"></script>
+  <script>
+    // 判断 页面状态
+    if (getInfo('couponCheck')) {
+      let couponObj = getInfo('coupon')[getInfo('couponCheck').cid - 1]
+      console.log(couponObj)
+
+      // 优惠券名称
+      toValue('cName', couponObj.name)
+      // 库存
+      toValue('caseNum', couponObj.cNum)
+      // 可用商品
+      $('.wareRadio')
+        .eq(couponObj.ware - 1)
+        .prop('checked', 1)
+      // 优惠券有效期
+      $('.vStart').val(couponObj.vStart)
+      $('.vEnd').val(couponObj.vEnd)
+      // 领券有效期
+      toValue('validity', couponObj.validity)
+      // 门槛检测
+      $('.shelfCheck')
+        .eq(couponObj.threshold == -1 ? 1 : 0)
+        .prop('checked', 1)
+      couponObj.threshold == -1
+        ? toValue('shelfCash', 0)
+        : toValue('shelfCash', couponObj.threshold)
+      // 优惠内容 减免
+      toValue('dCash', couponObj.discount)
+      // 每人限领次数
+      toValue('pickNum', couponObj.rNum)
+      // 使用说明
+      $('textarea').val(couponObj.intro)
+      if (getInfo('couponCheck').couponCheck == 1) {
+        // 禁用input
+        $('input').prop('disabled', 'disabled')
+        // 禁用textarea
+        $('textarea').prop('readonly', 'readonly')
+        // 禁用创建按钮
+        $('#createCoupon').prop('disabled', 'disabled')
+        $('.couponAddFooter p').html(``)
+        // 清空判定
+        sessionStorage.removeItem('couponCheck')
+      } else {
+        $('#createCoupon').html(`修改`)
+      }
+    }
+
+    // 填充数值 修改||查看
+    function toValue(name, value) {
+      for (let i = 0; i < $('input').length; i++) {
+        if ($('input').eq(i).prop('name') == name) {
+          $('input').eq(i).val(value)
+          break
+        }
+      }
+    }
+
+    // 创建优惠券对象 @构造函数
+    function Coupon(
+      id,
+      uid,
+      name,
+      cNum,
+      ware,
+      vStart,
+      vEnd,
+      validity,
+      threshold,
+      discount,
+      rNum,
+      intro,
+    ) {
+      this.id = id
+      this.uid = uid
+      this.name = name
+      this.cNum = cNum
+      this.ware = ware
+      this.vStart = vStart
+      this.vEnd = vEnd
+      this.validity = validity
+      this.threshold = threshold
+      this.discount = discount
+      this.rNum = rNum
+      this.intro = intro
+    }
+
+    // 返回
+    $('#goBack').on('click', () => {
+      $('#content').load('./营销中心-优惠券.html')
+    })
+
+    // 门槛检测 @输入框判定
+    $('.shelfCheck')
+      .eq(0)
+      .on('change', function () {
+        $('#shelfCash').removeProp('disabled')
+      })
+    $('.shelfCheck')
+      .eq(1)
+      .on('change', function () {
+        $('#shelfCash').val(0)
+        $('#shelfCash').prop('disabled', 'disabled')
+      })
+
+    // 创建
+    $('#cAddForm').on('submit', (e) => {
+      e.preventDefault()
+    })
+    $('#createCoupon').on('click', () => {
+      let nullCheck = 0
+      let formData = $('#cAddForm').serializeArray()
+      formData.forEach((item) => {
+        if (item.value == '') {
+          nullCheck++
+        }
+      })
+      if (!nullCheck) {
+        let couponArr = getInfo('coupon')
+        let user = getInfo('user')
+        if (getInfo('couponCheck')) {
+          // 获取数据 @修改
+          let pushData = new Coupon(
+            couponArr[getInfo('couponCheck').cid - 1].id,
+            user.id,
+            formData[0].value,
+            formData[1].value,
+            formData[2].value,
+            formData[3].value,
+            formData[4].value,
+            formData[5].value,
+            formData[6].value,
+            formData[7].value,
+            formData[8].value,
+            formData[9].value,
+          )
+          for (let i = 0; i < couponArr.length; i++) {
+            if (couponArr[i].id == pushData.id) {
+              couponArr[i] = pushData
+            }
+          }
+          saveInfo('coupon', couponArr)
+          console.log(getInfo('coupon')[getInfo('couponCheck').cid - 1])
+          // 清空判定
+          sessionStorage.removeItem('couponCheck')
+          alert('修改成功')
+        } else {
+          // 获取数据 @添加
+          let pushData = new Coupon(
+            couponArr[couponArr.length - 1].id + 1,
+            user.id,
+            formData[0].value,
+            formData[1].value,
+            formData[2].value,
+            formData[3].value,
+            formData[4].value,
+            formData[5].value,
+            formData[6].value,
+            formData[7].value,
+            formData[8].value,
+            formData[9].value,
+          )
+          couponArr.push(pushData)
+          saveInfo('coupon', couponArr)
+          alert('添加成功')
+        }
+        $('#content').load('./营销中心-优惠券.html')
+      } else {
+        $('.couponAddFooter p').html(`还有${nullCheck}处输入部分为空`)
+      }
+    })
+  </script>
+</html>

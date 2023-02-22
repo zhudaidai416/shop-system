@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.min.css" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .mCenterFrame {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        /* background-color: yellow; */
+        border-radius: 5px;
+      }
+      .mCenterHeader {
+        width: 100%;
+        height: auto;
+        padding: 15px 30px;
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid rgb(217, 217, 217);
+      }
+      .mCenterHeader h3 {
+        padding-right: 20px;
+        margin: 0;
+      }
+      .mCenterHeader p {
+        height: 12px;
+        font-style: 12px;
+        color: gray;
+        margin: 0;
+      }
+      .mCenterHref {
+        width: calc(100% - 60px);
+        height: auto;
+        padding: 30px;
+        display: flex;
+        /* justify-content: space-between; */
+      }
+      .hrefDiv {
+        min-width: 300px;
+        width: 400px;
+        height: 80px;
+        background-color: rgb(242, 242, 242);
+        margin-right: 15px;
+        padding: 15px;
+        display: flex;
+        border-radius: 4px;
+        cursor: pointer;
+        box-sizing: content-box;
+      }
+      .hrefDiv img {
+        width: 80px;
+        height: 100%;
+        margin-right: 15px;
+        border-radius: 4px;
+      }
+      .hrefIntro {
+        width: calc(100% - 95px);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .hrefIntro h3 {
+        font-size: 18px;
+        margin: 0;
+      }
+      .hrefIntro p {
+        font-size: 14px;
+        color: rgb(168, 168, 168);
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="mCenterFrame container">
+      <div class="mCenterHeader">
+        <h3>营销玩法</h3>
+        <p>吸粉、老客带新客，提高下单转化率</p>
+      </div>
+      <div class="mCenterHref">
+        <div class="hrefDiv">
+          <img src="" alt="" />
+          <div class="hrefIntro">
+            <h3>优惠券</h3>
+            <p>创建优惠券活动促进订单成交</p>
+          </div>
+        </div>
+        <div class="hrefDiv">
+          <img src="" alt="" />
+          <div class="hrefIntro">
+            <h3>满减</h3>
+            <p>多买多优惠快速去库存</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="../lib/bootstrap/js/jquery-1.11.3.js"></script>
+  <script src="../lib/bootstrap/js/bootstrap.js"></script>
+  <script src="../main.js"></script>
+  <script>
+    $('.mCenterHref').on('click', '.hrefDiv', function () {
+      switch ($(this).find('h3').html()) {
+        case '优惠券':
+          $('#content').load('./营销中心-优惠券.html')
+          break
+        case '满减':
+          $('#content').load('./营销中心-满减.html')
+          break
+        default:
+          break
+      }
+    })
+  </script>
+</html>

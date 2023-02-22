@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 引入bootstrap插件 -->
+    <link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.min.css">
+    <script src="../lib/bootstrap/js/jquery-1.11.3.js"></script>
+    <script src="../lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../main.js"></script>
+
+    <style>
+        .main-4{
+            /* border: 1px solid red; */
+            width: 90%;
+            margin-top: 10px;
+            border-bottom: 1px solid gray;
+        }
+        .fa-4-1{
+            margin-bottom: 20px;
+        }
+        .son-4-bottom-right{
+            text-align: center;
+            line-height: 4;
+            cursor: pointer;
+        }
+        .modal-backdrop {
+            /* 防止模态框背景变黑 */
+            /* opacity: 0.1 !important; */
+            /* filter: alpha(opacity=0) !important; */
+        }
+        .forget-pwd{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container main-4">
+        <div class="row fa-4-1">
+            <div class="col-sm-12 son-4-top">
+                <h3><b>安全设置</b></h3>
+            </div>
+        </div>
+        <div class="row fa-4-2">
+            <div class="col-sm-2 son-4-bottom-left">
+                <h4><b>账户密码</b></h4>
+                <p>当前密码强度：<span class="text-success">强</span></p>
+            </div>
+            <div class="col-sm-1 pull-right son-4-bottom-right">
+                <p class="text-primary" onclick="xgxg()">修改</p>
+                <!-- data-toggle="modal" data-target="#myModal" -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 修改密码模态框 -->
+    <!-- Modal -->
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">修改密码</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                      <label class="col-sm-2 control-label old-pwd-lb" for="old-pwd">原密码:</label>
+                      <div class="col-sm-8">
+                        <input class="form-control" type="text" id="old-pwd" placeholder="请输入">
+                      </div>
+                      <div class="col-sm-2">
+                        <p><small class="text-primary forget-pwd">忘记密码？</small></p>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-2 control-label" for="new-pwd">新密码:</label>
+                      <div class="col-sm-8">
+                        <input class="form-control" type="password" id="new-pwd" placeholder="请输入新密码,6-16位密码,区分大小写">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="affirm-pwd">确认密码:</label>
+                        <div class="col-sm-8">
+                          <input class="form-control" type="password" id="affirm-pwd" placeholder="请再次输入密码">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+              <button type="button" class="btn btn-primary" id="xg">修改</button>
+            </div>
+          </div>
+        </div>
+    </div>
+    
+    <script>
+        let forget_PWd = false
+        //正则验证
+        ////这个正则表示要匹配的对象只有6-18个,可以是任意字母数字的字符
+        let reg = /^[0-9a-zA-Z]{6,16}$/ 
+        /* 随机函数 */
+        getRandom=(min,max)=>{
+            return Math.floor(Math.random()*(max - min + 1) +min)
+        }
+       
+        /* 拿取浏览器里面的数据 */
+        let userStr = sessionStorage.getItem('user')
+        let user1 = JSON.parse(userStr)
+
+        /* 手动点击让模态框显示  防止模态框背景变暗和重复遮罩 */
+        function xgxg(){
+            $('#myModal').modal()
+        }
+
+        /* 点击修改 将新密码写入对象里面 */
+        $('#myModal #xg').on('click',function(){
+            let old_pwd = $('#myModal #old-pwd').val()
+            let new_pwd = $('#myModal #new-pwd').val()
+            let affirm_pwd = $('#myModal #affirm-pwd').val()
+            if (user1.pwd == old_pwd||forget_PWd) {
+                //正则匹配
+                let is_true = reg.test(new_pwd)
+                if (is_true) {
+                    if (new_pwd == affirm_pwd) {
+                        user1.pwd = affirm_pwd
+                        alert('修改成功！');
+                        /* 存到浏览器里面 */
+                        let user = JSON.stringify(user1)
+                        sessionStorage.setItem('user',user)
+                        /* $(".modal-backdrop").remove();
+                        $("body").removeClass('modal-open');*/
+                        /* 由于模态框里面使用form表单提交数据,可以使用form的reset方法实现表单重置 */
+                        $('#myModal').find('form').trigger('reset')
+                        $('#myModal').modal('hide')
+                        return
+                    }else{
+                        alert('两次密码不一样');
+                        return
+                    }
+                }else{
+                    alert('密码格式不正确');
+                    return
+                }
+            }else{
+                alert('输入的旧密码不正确');
+            }
+        })
+
+        /* 忘记密码函数 */
+        $('.forget-pwd').on('click',function(){
+            forget_PWd = true
+            $('#myModal #old-pwd').after(`<p class="small text-muted">验证短信将发送到你原绑定的手机：188****926,请注意查收</p>`)
+            $('#myModal .old-pwd-lb').text('验证码:')
+            setTimeout(() => {
+                $('#myModal #old-pwd').val(getRandom(100000,999999))
+            }, 3000);
+        })
+    </script>
+</body>
+</html>
